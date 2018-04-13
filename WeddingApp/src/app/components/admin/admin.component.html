@@ -1,0 +1,21 @@
+<div class="container">  
+  <form id="contact">
+    <h3>Admin Form</h3>
+    <h4>* All fields are Mandatory</h4>
+    <fieldset>
+      <input placeholder="Enter Venue Name" [(ngModel)]="updateData.venueName" type="text" name="venueName" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Enter Venue Location" [(ngModel)]="updateData.location" type="text" name="location" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Enter City" [(ngModel)]="updateData.city" type="text" name="city" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Enter Venue Price" [(ngModel)]="updateData.price" type="text" name="price" required>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit"  id="submit" (click)="onSubmit(updateData)">Submit</button>
+    </fieldset>
+  </form>
+</div>
