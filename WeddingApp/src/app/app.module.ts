@@ -11,13 +11,14 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { AppRoutingModule } from './/app-routing.module';
 
 
+
 @NgModule({
   declarations: [
   AppComponent,
   HomeComponent,
   AdminComponent,
   HeaderComponent,
-  FooterComponent
+  FooterComponent,
   ],
   imports: [
   BrowserModule,
@@ -25,7 +26,6 @@ import { AppRoutingModule } from './/app-routing.module';
   HttpModule,
   FormsModule,
   ReactiveFormsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WeddingApiService } from '../../services/wedding-api.service';
+import { AppConfig }from '../../config/config.constant';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {NgForm} from '@angular/forms';
+
 
 
 @Component({
@@ -11,17 +14,34 @@ import {NgForm} from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 	public updateData : any={};
+  public hidden=true;
+  public  venue_image:string="";
+  selectedFile=null;
+  constructor(private weddingApiService: WeddingApiService, private http:Http) { }
+ 
+  ngOnInit() {
+  }
 
-	constructor(private weddingApiService: WeddingApiService) { }
+  onFileSelected(event){
+    this.selectedFile=event.target.files[0];
+    console.log(this.selectedFile.name);
+  }
 
+  upload(){
+    const fd = new FormData();
+    fd.append('file', this.selectedFile)
+    this.http.post(AppConfig.imageUrl,fd).subscribe((res)=>{
+      console.log(res);
+    });  
 
-	ngOnInit() {
-	}
+  }
 
 //to update current venue details in the database
-onSubmit(uploadData) {
-    this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
-    },(error:any)=>{
-    })
-    }
+onSubmit(updateData) {
+  updateData.venue_image=this.selectedFile.name;
+  this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
+    console.log(data);
+  },(error:any)=>{
+  })
+}
 }
