@@ -9,6 +9,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { VenueComponent } from './components/venue/venue.component';
 
 
 
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './/app-routing.module';
   AdminComponent,
   HeaderComponent,
   FooterComponent,
+  VenueComponent,
   ],
   imports: [
   BrowserModule,

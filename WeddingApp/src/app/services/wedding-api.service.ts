@@ -12,6 +12,13 @@ export class WeddingApiService {
 	constructor(private http:Http) { 
 	}
 
+// Call rest api to get venue details from database
+getvenueDetails(){ 
+  return this.http.get(AppConfig.getUrl)
+  .map(data => data.json(),
+    (error: any)=>this.handleError(error));
+}
+
 // Call rest api to update  weddingApp data into database
 updateDetails(uploadData){ 
 	console.log(uploadData);

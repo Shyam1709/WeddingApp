@@ -26,11 +26,11 @@ export class AdminComponent implements OnInit {
     this.selectedFile=event.target.files[0];
     console.log(this.selectedFile.name);
   }
-
+ //to upload images on spring server
   upload(){
     const fd = new FormData();
     fd.append('file', this.selectedFile)
-    this.http.post(AppConfig.imageUrl,fd).subscribe((res)=>{
+    this.http.post(AppConfig.postimageUrl,fd).subscribe((res)=>{
       console.log(res);
     });  
 

@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;" *ngFor="let item of venue">
+  <img class="card-img-top" [attr.src]="imageUrl+item.venue_image" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">h1{{item.venueName}}</h5>
+    <p class="card-text">{{item.location}}</p>
+    <p class="card-text">{{item.city}}</p>
+    <p class="card-text">{{item.price}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
