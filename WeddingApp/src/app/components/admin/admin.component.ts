@@ -25,6 +25,7 @@ export class AdminComponent implements OnInit {
   onFileSelected(event){
     this.selectedFile=event.target.files[0];
     console.log(this.selectedFile.name);
+      console.log(this.updateData.type);
   }
  //to upload images on spring server
   upload(){
@@ -39,6 +40,7 @@ export class AdminComponent implements OnInit {
 //to update current venue details in the database
 onSubmit(updateData) {
   updateData.venue_image=this.selectedFile.name;
+  console.log(updateData);
   this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
     console.log(data);
   },(error:any)=>{

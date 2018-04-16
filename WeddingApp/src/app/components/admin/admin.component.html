@@ -17,6 +17,17 @@
           <input placeholder="Enter Venue Price" [(ngModel)]="updateData.price" type="text" name="price" required>
         </fieldset>
         <fieldset>
+          <input placeholder="Enter Capacity of venue" [(ngModel)]="updateData.capacity" type="text" name="capacity" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter Rating of venue" [(ngModel)]="updateData.venue_rating" type="text" name="capacity" required>
+        </fieldset>
+        Select type&nbsp;&nbsp;<select class="selectpicker" [(ngModel)]="updateData.type" name="type">
+          <option>Banquet Hall</option>
+          <option>Party Lounge</option>
+          <option>Hotel</option>
+        </select>
+        <fieldset>
           <h4>File Upload</h4>
           <input type="file" (change)=onFileSelected($event) >
           <button class="submit" (click)="upload()">upload</button>
@@ -31,20 +42,18 @@
         <h3>Catering Form</h3>
         <h4>* All fields are Mandatory</h4>
         <fieldset>
-          <input placeholder="Enter Venue Name" [(ngModel)]="updateData.venueName" type="text" name="venueName" required>
+          <input placeholder="Enter Menu Name" [(ngModel)]="updateData.venueName" type="text" name="venueName" required>
         </fieldset>
         <fieldset>
-          <input placeholder="Enter Venue Location" [(ngModel)]="updateData.location" type="text" name="location" required>
+          <select class="selectpicker">
+            <option>Select Type</option>
+            <option>Veg only</option>
+            <option>Veg/NonVeg</option>
+          </select>
         </fieldset>
-        <fieldset>
-          <input placeholder="Enter City" [(ngModel)]="updateData.city" type="text" name="city" required>
-        </fieldset>
-        <fieldset>
-          <input placeholder="Enter Venue Price" [(ngModel)]="updateData.price" type="text" name="price" required>
-        </fieldset>
-        <fieldset>
-          <button name="submit" type="submit" >Submit</button>
-        </fieldset>
+
+        <button name="submit" type="submit">Submit</button>
+
       </form>
     </div>
   </div>

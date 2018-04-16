@@ -1,0 +1,36 @@
+/*to add scroll bar in menu list*/
+ul{
+ overflow-y: auto; 
+ height: 250px;
+}
+
+/*to align list items in center*/
+#myList{
+  text-align: center;
+}
+
+.rating{
+  text-align: right;
+}
+/* css for large devices */
+@media (min-width: 992px) and (max-width: 1500px) {
+  .card{
+   /* height:90%; 
+    margin-bottom: 22px;
+    */
+    max-width: 20 rem;
+    padding-bottom: 0px;
+    box-shadow: 5px 10px #888888;
+  }
+  .card-body{
+    padding-bottom: 0px;
+    padding-right: 0px;
+  }
+  .card-text{
+    font-family: 'Nunito', sans-serif;
+    margin-left: 0px;
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+
+}
