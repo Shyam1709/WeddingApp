@@ -13,6 +13,7 @@ import { VenueComponent } from './components/venue/venue.component';
 import { RegisterComponent } from './components/authenticate/register/register.component';
 import { LoginComponent } from './components/authenticate/login/login.component';
 import { CateringComponent } from './components/services/catering/catering.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 
 
@@ -27,6 +28,7 @@ import { CateringComponent } from './components/services/catering/catering.compo
   RegisterComponent,
   LoginComponent,
   CateringComponent,
+  DashboardComponent,
   ],
   imports: [
   BrowserModule,

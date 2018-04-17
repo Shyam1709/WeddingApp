@@ -5,6 +5,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { VenueComponent } from './components/venue/venue.component';
 import { LoginComponent } from './components/authenticate/login/login.component';
 import { RegisterComponent } from './components/authenticate/register/register.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 
 import { HomeComponent} from './components/home/home.component';
@@ -16,7 +17,8 @@ const routes :Routes = [
 {path: 'admin', component:AdminComponent },
 {path: 'venue', component:VenueComponent },
 {path: 'login', component:LoginComponent },
-{path: 'register', component:RegisterComponent }
+{path: 'register', component:RegisterComponent },
+{path: 'dashboard', component:DashboardComponent }
 
 ];
 
