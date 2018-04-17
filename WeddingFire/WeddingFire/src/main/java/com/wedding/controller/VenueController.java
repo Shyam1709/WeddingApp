@@ -66,9 +66,9 @@ public class VenueController {
 	}
 
 	// to get venue images from mongodb database
-	@RequestMapping(value = "/venue/getimages/{venue_path}", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
-	public ResponseEntity<InputStreamResource> getImage(@PathVariable String venue_path) throws IOException {
-		ClassPathResource imgFile = new ClassPathResource("images/"+ venue_path + ".png");
+	@RequestMapping(value = "/venue/getimages/{image_path}", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<InputStreamResource> getImage(@PathVariable String image_path) throws IOException {
+		ClassPathResource imgFile = new ClassPathResource("images/"+ image_path + ".png");
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG)
 				.body(new InputStreamResource(imgFile.getInputStream()));
 	}

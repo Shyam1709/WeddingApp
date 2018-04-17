@@ -1,19 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent{
+export class RegisterComponent implements OnInit{
  private form:FormGroup;
-  constructor(private fb: FormBuilder) { 
-this.form=fb.group({
-  name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]],
-  email: ['',[Validators.required, Validators.email]],
-  password: ['',[Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
-  confirmpassword: ['',[Validators.required]]
-})
+ public formData:{};
+ public checkPassword:boolean=false;
+
+   constructor() { 
 }
+ngOnInit(){
+  this.form = new FormGroup({
+        name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)] ), 
+        email: new FormControl('', [Validators.required, Validators.pattern("[^ @]*@[^ @]*")]),
+        password: new FormControl('', [Validators.required,Validators.minLength(6), Validators.maxLength(10)]),
+        });
+  this.checkPassword=false;
+}
+
+ onSubmit(form){
+    	console.log(form);
+    }   
+
 }

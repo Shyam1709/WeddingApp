@@ -12,6 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { VenueComponent } from './components/venue/venue.component';
 import { RegisterComponent } from './components/authenticate/register/register.component';
 import { LoginComponent } from './components/authenticate/login/login.component';
+import { CateringComponent } from './components/services/catering/catering.component';
 
 
 
@@ -25,6 +26,7 @@ import { LoginComponent } from './components/authenticate/login/login.component'
   VenueComponent,
   RegisterComponent,
   LoginComponent,
+  CateringComponent,
   ],
   imports: [
   BrowserModule,

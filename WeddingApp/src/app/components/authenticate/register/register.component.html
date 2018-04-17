@@ -15,21 +15,35 @@
               <form class="form" [formGroup]="form"  id="formLogin">
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" [(ngModel)]="movie.name" class="form-control form-control-lg rounded-0" formControlName="name" name="name"> 
+                  <input type="text"  class="form-control form-control-lg rounded-0" formControlName="name" name="name"> 
+                </div>
+                <div class="text-danger">
+                  <p *ngIf="form.get('name').errors?.required && form.get('name').touched">Please Enter your Name</p>
+                  <p *ngIf="form.get('name').errors?.minlength && form.get('name').touched">Please Enter Name of atleast 3 digits</p>
+                  <p *ngIf="form.get('name').errors?.maxlength && form.get('name').touched">Please Enter name of maximum 25 digits</p>
                 </div>
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="Email"  [(ngModel)]="movie.email" class="form-control form-control-lg rounded-0" formControlName="email" id="email">
+                  <input type="Email"  class="form-control form-control-lg rounded-0" formControlName="email" id="email">
+                </div>
+                <div class="text-danger">
+                  <p *ngIf="form.get('email').errors?.required && form.get('name').touched">Please Enter your Email</p>
+                  <p *ngIf="form.get('email').errors?.pattern && form.get('email').touched">Please Enter your valid Email</p>
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password"  [(ngModel)]="movie.password" class="form-control form-control-lg rounded-0" formControlName="password" id="pwd" >
+                  <input type="password" class="form-control form-control-lg rounded-0" formControlName="password" id="pwd" >
+                </div>
+                <div class="text-danger">
+                  <p *ngIf="form.get('password').errors?.required && form.get('password').touched">Please Enter your password</p>
+                  <p *ngIf="form.get('password').errors?.minlength && form.get('password').touched">Please Enter password of atleast 6 digits</p>
+                  <p *ngIf="form.get('password').errors?.maxlength && form.get('password').touched">Please Enter password of maximum 10 digits</p>
                 </div>
                 <div class="form-group">
                   <label>Confirm Password</label>
-                  <input type="password"  class="form-control form-control-lg rounded-0" id="cpwd" formControlName="confirmpassword">
+                  <input type="password"  class="form-control form-control-lg rounded-0" id="cpwd" name="confirmpassword">
                 </div>
-                <button type="button" class="btn btn-success btn-lg" (click)="onsubmit()">SignUp</button>
+                <button type="button" class="btn btn-success btn-lg" [disabled]="form.invalid" (click)="onSubmit(form)">SignUp</button>
                 <hr class="pt-2">
                 <span>Already have an account!&nbsp;<a routerLink="/login">Login Here</a></span>
               </form>
