@@ -4,4 +4,5 @@ export class AppConfig{
   public static getimageUrl="http://localhost:8095/wedding/venue/getimages/";
   public static uploadUrl = "http://localhost:8095/wedding/venue";
   public static getUrl = "http://localhost:8095/wedding/venue/getdetails";
+  public static localImg="../../../assets/images";
 }

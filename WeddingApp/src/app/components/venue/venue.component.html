@@ -32,18 +32,19 @@
         </ul>   
       </div>
       <div class="col-md-9">
-        <div class="container">
+        <div class="container pb-4 mt-5">
           <div class="row">
             <div class="col-md-4" *ngFor="let item of venue">
                 <div class="card" >
-                  <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="Card image cap">
+                  <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="{{item.venueName}} image not found">
                   <div class="card-body">
-                    <h6 class="card-title">{{item.venueName}}<span class="text-align-right">  {{item.venue_rating}}<i class="fa fa-star"></i></span></h6>
+                    <h6 class="card-title">{{item.venueName}}<span class="float-right bg-warning">{{item.venue_rating}}<i class="fa fa-star"></i></span></h6>
                     <p class="card-text"><i class="fas fa-map-marker-alt"></i>  {{item.location}}</p>
                     <p class="card-text">City: {{item.city}}</p>
-                    <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}</p>
-                    <a href="#" class="btn btn-primary">Enquiry</a>
-                    <a href="#" class="btn btn-primary">Book Now</a>
+                    <p class="card-text">Type: {{item.type}}<span class="float-right">No of Guests:</span></p>
+                    <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}<span class="float-right bg-success guest"><i class="fa fa-users"></i>&nbsp;{{item.capacity}}</span></p>
+                    <a href="#" class="btn btn-primary btn-sm">Enquiry</a>
+                    <a href="#" class="btn btn-primary btn-sm">Book Now</a>
                   </div>
                 </div>
               </div>

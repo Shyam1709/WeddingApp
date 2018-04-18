@@ -1,0 +1,62 @@
+<div class="fix-image">
+  <img src="../../../assets/images/catering.png" class="d-block w-100" alt="background image not found">
+</div>
+<div class="container"> 
+  <form class="col-md-6 mx-auto pt-3">
+    <div class="input-group">
+      <input type="text" id="movieTitle" class="form-control"  placeholder="Search venue..." name="movieTitle">
+      <span class="input-group-btn">
+        <button class="btn" type="submit">Search</button>
+      </span>
+    </div>
+  </form>
+  <div class="row mt-2">
+    <div class="col-md-3 pl-0">
+      <input class="form-control mt-5" id="myInput" type="text" placeholder="Search City..">
+      <br>
+      <ul class="list-group" id="myList">
+        <li class="list-group-item">Ahmedabad</li>
+        <li class="list-group-item">Bangalore</li>
+        <li class="list-group-item">Chennai</li>
+        <li class="list-group-item">Delhi</li>
+        <li class="list-group-item">Ghaziabad</li>
+        <li class="list-group-item">Hyderabad</li>
+        <li class="list-group-item">Jaipur</li>
+        <li class="list-group-item">Kolkata</li>
+        <li class="list-group-item">Mumbai</li>
+        <li class="list-group-item">Pune</li>
+      </ul> 
+      <ul class="list-group mt-5" id="myList">
+        <li class="list-group-item list-group-item-primary">Select by Type</li>
+        <a class="list-group-item">Banquet Hall</a>
+        <a class="list-group-item">Farm House</a>
+        <a class="list-group-item">Party Lounge</a>
+        <a class="list-group-item">Hotel</a>
+      </ul>   
+    </div>
+    <div class="col-md-9">
+      <div class="container pb-4 mt-5">
+        <div class="row">
+          <div class="card" *ngFor="let item of venue">
+            <div class="col-md-4" >
+              <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="{{item.venueName}} image not found">
+            </div>
+            <div class="col-md-5">
+              <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="{{item.venueName}} image not found">
+              <div class="card-body">
+                <h6 class="card-title">{{item.venueName}}<span class="float-right bg-warning">{{item.venue_rating}}<i class="fa fa-star"></i></span></h6>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i>  {{item.location}}</p>
+                <p class="card-text">City: {{item.city}}</p>
+                <p class="card-text">Type: {{item.type}}<span class="float-right">No of Guests:</span></p>
+                <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}<span class="float-right bg-success guest"><i class="fa fa-users"></i>&nbsp;{{item.capacity}}</span></p>
+                <a href="#" class="btn btn-primary btn-sm">Enquiry</a>
+                <a href="#" class="btn btn-primary btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

@@ -26,6 +26,13 @@ updateDetails(uploadData){
 	.map(data => data.json(),
 		(error: any)=>this.handleError(error));
 }
+
+// Call rest api to login user into user database
+loginUser(loginDetails){ 
+  return this.http.post(AppConfig.getUrl+'/login',loginDetails, {headers: this.headers})
+  .map(data =>data.json(),
+    (error:any) =>this.handleError(error));
+}
 // Handle errors
 private handleError(error: Response){
   return Observable.throw(error);

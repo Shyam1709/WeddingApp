@@ -22,8 +22,16 @@ ngOnInit(){
   this.checkPassword=false;
 }
 
+check(value:string){
+if(this.form.get('password').value==value){
+this.checkPassword=false;
+}
+else
+this.checkPassword=true;
+}
  onSubmit(form){
     	console.log(form);
     }   
+
 
 }

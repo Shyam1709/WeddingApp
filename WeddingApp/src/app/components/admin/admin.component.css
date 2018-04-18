@@ -14,13 +14,6 @@ body {
   background: #4CAF50;
 }
 
-/*.container {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-*/
 .contact input[type="text"],
 .contact input[type="email"],
 .contact input[type="tel"],

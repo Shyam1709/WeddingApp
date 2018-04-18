@@ -12,7 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { VenueComponent } from './components/venue/venue.component';
 import { RegisterComponent } from './components/authenticate/register/register.component';
 import { LoginComponent } from './components/authenticate/login/login.component';
-import { CateringComponent } from './components/services/catering/catering.component';
+import { CateringComponent } from './components/weddingServices/catering/catering.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 

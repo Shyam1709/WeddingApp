@@ -14,9 +14,7 @@ public class User {
 	@Pattern(regexp="^([A-Z][a-z])$")
 	private String userName;
 	private String emailId;
-	@NotNull
-	@Size(min=3, max=25 )
-	private Integer contactNo;
+	private Long contactNo;
 	private String password;
 	private String role = "user";
 
@@ -27,7 +25,7 @@ public class User {
 	public User() {
 	}
 
-	public User(String userName, String emailId, Integer contactNo, String password) {
+	public User(String userName, String emailId, Long contactNo, String password) {
 		this.userName = userName;
 		this.emailId = emailId;
 		this.contactNo = contactNo;
@@ -45,12 +43,13 @@ public class User {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-
-	public Integer getContactNo() {
+	@NotNull
+	@Size(min=10, max=10)
+	public Long getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(Integer contactNo) {
+	public void setContactNo(Long contactNo) {
 		this.contactNo = contactNo;
 	}
 

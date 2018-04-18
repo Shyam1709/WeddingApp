@@ -12,7 +12,15 @@ private String location;
 private Double rating;
 private Integer contactNo;
 private Integer price;
+private String description;
 private String imagePath;
+
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
 
 public String getId() {
 	return id;

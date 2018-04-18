@@ -1,0 +1,11 @@
+.fix-image{
+  height: 200px;
+  overflow: hidden;
+}
+img{
+  opacity: 1;
+  margin-top: 0px;
+}
+.btn{
+  background-color: red;
+}

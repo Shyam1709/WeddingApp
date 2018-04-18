@@ -6,12 +6,23 @@ import org.springframework.data.annotation.Id;
 public class Venue {
 @Id
 private ObjectId id; 
+	public Integer getCapacity() {
+	return capacity;
+}
+public void setCapacity(Integer capacity) {
+	this.capacity = capacity;
+}
+public void setVenueName(String venueName) {
+	this.venueName = venueName;
+}
+
 	private String venueName;
 	private String location;
 	private String city;
 	private Double venue_rating;
 	private Integer price;
 	private String type;
+	private Integer capacity;
 	private String venue_image;
 	
 	public Venue() {
