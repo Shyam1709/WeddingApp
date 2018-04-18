@@ -1,9 +1,10 @@
 package com.wedding.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
+
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class CateringProviderController {
 	}
 
 	// to save catering provider details in the database
-	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/service", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> add(@RequestBody CateringProvider cateringProvider) {
 		Map<String, String> response = new HashMap<String, String>();
 		cateringproviderRepository.save(cateringProvider);
@@ -35,6 +36,11 @@ public class CateringProviderController {
 		return ResponseEntity.accepted().body(response);
 	}
 	
+	// to get catering provider details from database 
+	@RequestMapping(value = "/cateringProviders/getdetails", method = RequestMethod.GET)
+	public List<CateringProvider> getAll() {
+		return cateringproviderRepository.findAll();
+	}
 	
 	
 

@@ -14,6 +14,7 @@ import {NgForm} from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 	public updateData : any={};
+  public updateCatering: any={};
   public hidden=true;
   public  venue_image:string="";
   selectedFile=null;
@@ -44,6 +45,16 @@ onSubmit(updateData) {
   this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
     console.log(data);
   },(error:any)=>{
+  })
+}
+
+onClick(updateCatering) {
+  updateCatering.venue_image=this.selectedFile.name;
+  console.log(updateCatering);
+  this.weddingApiService.updateCatering(this.updateCatering).subscribe(data=>{
+    console.log(data);
+  },(error:any)=>{
+    console.log(error);
   })
 }
 }

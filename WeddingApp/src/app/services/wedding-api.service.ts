@@ -27,6 +27,13 @@ updateDetails(uploadData){
 		(error: any)=>this.handleError(error));
 }
 
+// Call rest api to update  Catering Provider data into database
+updateCatering(updateCatering){ 
+  console.log(updateCatering);
+  return this.http.post(AppConfig.postcateringUrl,updateCatering, {headers: this.headers})
+  .map(data => data.json(),
+    (error: any)=>this.handleError(error));
+}
 // Call rest api to login user into user database
 loginUser(loginDetails){ 
   return this.http.post(AppConfig.getUrl+'/login',loginDetails, {headers: this.headers})

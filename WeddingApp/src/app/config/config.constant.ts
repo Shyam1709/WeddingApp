@@ -3,6 +3,8 @@ export class AppConfig{
   public static postimageUrl="http://localhost:8095/wedding/venue/images";
   public static getimageUrl="http://localhost:8095/wedding/venue/getimages/";
   public static uploadUrl = "http://localhost:8095/wedding/venue";
+  public static postcateringUrl="http://localhost:8095/catering/service"
+  
   public static getUrl = "http://localhost:8095/wedding/venue/getdetails";
   public static localImg="../../../assets/images";
 }

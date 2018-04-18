@@ -8,11 +8,33 @@ public class CateringProvider {
 @Id	
 private String id;
 private  String cateringProvider;
+private String city;
 private String location;
 private Double rating;
-private Integer contactNo;
+private Long contactNo;
+public Long getContactNo() {
+	return contactNo;
+}
+public void setContactNo(Long contactNo) {
+	this.contactNo = contactNo;
+}
 private Integer price;
 private String description;
+
+public CateringProvider() {
+	
+}
+public CateringProvider(String cateringProvider, String location, Double rating, Long contactNo, Integer price,
+		String description, String imagePath) {
+	super();
+	this.cateringProvider = cateringProvider;
+	this.location = location;
+	this.rating = rating;
+	this.contactNo = contactNo;
+	this.price = price;
+	this.description = description;
+	this.imagePath = imagePath;
+}
 private String imagePath;
 
 public String getDescription() {
@@ -22,12 +44,6 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
-public String getId() {
-	return id;
-}
-public void setId(String id) {
-	this.id = id;
-}
 public String getCateringProvider() {
 	return cateringProvider;
 }
@@ -46,11 +62,12 @@ public Double getRating() {
 public void setRating(Double rating) {
 	this.rating = rating;
 }
-public Integer getContactNo() {
-	return contactNo;
+
+public String getCity() {
+	return city;
 }
-public void setContactNo(Integer contactNo) {
-	this.contactNo = contactNo;
+public void setCity(String city) {
+	this.city = city;
 }
 public Integer getPrice() {
 	return price;
