@@ -28,18 +28,11 @@ public class UserController {
 
 	// to save userdetails in the database via registration
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, String>> add(@Valid @RequestBody User user, BindingResult result) {
+	public ResponseEntity<Map<String, String>> add(@RequestBody User user) {
 		Map<String, String> response = new HashMap<String, String>();
-		if (result.hasErrors()) {
-			result.getFieldErrors().stream()
-					.forEach(err -> System.out.println(err.getField() + ": " + err.getDefaultMessage()));
-			response.put("error", String.valueOf(result));
-			return ResponseEntity.badRequest().body(response);
-		} else {
 			userRepository.save(user);
 			response.put("ok", "Registered Succesfuly");
 			return ResponseEntity.accepted().body(response);
-		}
 
 	}
 

@@ -9,3 +9,19 @@ img{
 .btn{
   background-color: red;
 }
+
+/* css for large devices */
+@media (min-width: 992px) and (max-width: 1500px) {
+.card{
+  box-shadow: 3px 5px #888888;
+  padding-right: 0px;
+  margin-right: 0px;
+}.card-text{
+  font-size: 14px;
+}
+p{
+  line-height: 3px;
+  word-wrap: normal;
+}
+}
+

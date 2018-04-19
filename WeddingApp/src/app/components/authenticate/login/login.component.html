@@ -14,13 +14,33 @@
               <form class="form" role="form" id="formLogin">
                 <div class="form-group">
                   <label>EmailId</label>
-                  <input type="text" class="form-control form-control-lg rounded-0" [(ngModel)]="loginDetails.emailId" name="uname1" id="uname1" required="">
+                  <input type="text" class="form-control form-control-lg rounded-0" [(ngModel)]="loginDetails.emailId" name="emailId" id="emailId" required  #emailId='ngModel'>
+                </div>
+                <div *ngIf="emailId.invalid">
+                  <div *ngIf="emailId.errors?.required && emailId.touched">
+                    EmailId is required.
+                  </div>
+                   <div *ngIf="emailId.untouched && password.touched">
+                    EmailId is required.
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control form-control-lg rounded-0" [(ngModel)]="loginDetails.password" id="pwd1" required="" autocomplete="new-password">
+                  <input type="password" class="form-control form-control-lg rounded-0" [(ngModel)]="loginDetails.password" name="password" id="pwd1" required minlength="6" required maxlength="10"  required  #password='ngModel'>
                 </div>
-                <button type="button" class="btn btn-success btn-lg">Login</button>
+
+                <div *ngIf="password.invalid" class="text-danger">
+                  <div *ngIf="password.errors?.required && password.touched">
+                    Password is required.
+                  </div>
+                  <div *ngIf="password.errors?.minlength && password.touched">
+                    Password should be of atleast 6 digits.
+                  </div>
+                  <div *ngIf="password.errors?.maxlength && password.touched">
+                    Password should be of max 10 digits.
+                  </div>
+                </div>
+                <button type="button" class="btn btn-success btn-lg" (click)="login(loginDetails)">Login</button>
                 <hr class="pt-2">
                 <span>Don't have an account!&nbsp;<a routerLink="/register">SignUp Here</a></span>
               </form>

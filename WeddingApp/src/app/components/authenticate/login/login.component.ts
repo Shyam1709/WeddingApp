@@ -5,7 +5,8 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [WeddingApiService]
 })
 export class LoginComponent implements OnInit {
 	public errorMsg ='';
@@ -17,9 +18,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+// to send login credentials to the server for authentication
 login(loginDetails){
 		this.weddingApiService.loginUser(loginDetails).subscribe((res)=>{			
-			alert(JSON.parse(res));
 			this.router.navigate(['/home']);
 		},(error:any)=>{
 			this.er=JSON.parse(error._body);
@@ -29,5 +30,6 @@ login(loginDetails){
 		})
 
 	}
-
 }
+
+

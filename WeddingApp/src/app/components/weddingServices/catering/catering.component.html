@@ -1,3 +1,4 @@
+
 <div class="fix-image">
   <img src="../../../assets/images/catering.png" class="d-block w-100" alt="background image not found">
 </div>
@@ -27,28 +28,27 @@
         <li class="list-group-item">Pune</li>
       </ul> 
       <ul class="list-group mt-5" id="myList">
-        <li class="list-group-item list-group-item-primary">Select by Type</li>
-        <a class="list-group-item">Banquet Hall</a>
-        <a class="list-group-item">Farm House</a>
-        <a class="list-group-item">Party Lounge</a>
-        <a class="list-group-item">Hotel</a>
+        <li class="list-group-item list-group-item-primary">Select by Budget</li>
+        <a class="list-group-item">under 3000</a>
+        <a class="list-group-item">3000-5000</a>
+        <a class="list-group-item">5000-10000</a>
+        <a class="list-group-item"> >10000</a>
       </ul>   
     </div>
-    <div class="col-md-9">
-      <div class="container pb-4 mt-5">
-        <div class="row">
-          <div class="card" *ngFor="let item of venue">
-            <div class="col-md-4" >
-              <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="{{item.venueName}} image not found">
+    <div class="col-md-9 pr-0">
+      <div class="container pb-4 mt-5 pr-0">
+          <div class="card" *ngFor="let item of cateringProvider">
+             <div class="row">
+            <div class="col-md-4 pr-0 my-auto mx-auto" >
+              <img class="img-fluid my-auto" [attr.src]="imageUrl+item.image_path" alt="{{item.venueName}} image not found">
             </div>
-            <div class="col-md-5">
-              <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="{{item.venueName}} image not found">
+            <div class="col-md-8 pr-0 mr-0">
               <div class="card-body">
-                <h6 class="card-title">{{item.venueName}}<span class="float-right bg-warning">{{item.venue_rating}}<i class="fa fa-star"></i></span></h6>
-                <p class="card-text"><i class="fas fa-map-marker-alt"></i>  {{item.location}}</p>
-                <p class="card-text">City: {{item.city}}</p>
-                <p class="card-text">Type: {{item.type}}<span class="float-right">No of Guests:</span></p>
-                <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}<span class="float-right bg-success guest"><i class="fa fa-users"></i>&nbsp;{{item.capacity}}</span></p>
+                <h5 class="card-title">{{item.cateringProvider}}</h5>
+                <p class="card-text text-muted"><i class="fas fa-map-marker-alt"></i> {{item.location}}, {{item.city}}</p>
+               <h6 class="card-text">{{item.description}}</h6>
+                <p class="card-text">Rating: {{item.rating}}<i class="fas fa-star text-primary"></i><span class="pl-5"><i class="fas fa-phone"></i></span>: {{item.contactNo}}</p>
+                <p class="card-text">Starting Price: <i class="fas fa-rupee-sign text-success"></i> {{item.price}}</p>
                 <a href="#" class="btn btn-primary btn-sm">Enquiry</a>
                 <a href="#" class="btn btn-primary btn-sm">Book Now</a>
               </div>

@@ -12,6 +12,13 @@ private String city;
 private String location;
 private Double rating;
 private Long contactNo;
+private String image_path;
+public String getImage_path() {
+	return image_path;
+}
+public void setImage_path(String image_path) {
+	this.image_path = image_path;
+}
 public Long getContactNo() {
 	return contactNo;
 }

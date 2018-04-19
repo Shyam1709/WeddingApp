@@ -12,9 +12,24 @@ export class WeddingApiService {
 	constructor(private http:Http) { 
 	}
 
+//Call rest api to register user into user database
+register(registerDetails){ 
+  return this.http.post(AppConfig.saveuserUrl,registerDetails, {headers: this.headers})
+  .map(data =>data.json(),
+    (error:any) =>this.handleError(error));
+}
+
+
+//Call rest api to login user into user database
+loginUser(loginDetails){ 
+  return this.http.post(AppConfig.validateuserUrl,loginDetails, {headers: this.headers})
+  .map(data =>data.json(),
+    (error:any) =>this.handleError(error));
+}
+
 // Call rest api to get venue details from database
 getvenueDetails(){ 
-  return this.http.get(AppConfig.getUrl)
+  return this.http.get(AppConfig.getvenueUrl)
   .map(data => data.json(),
     (error: any)=>this.handleError(error));
 }
@@ -22,7 +37,7 @@ getvenueDetails(){
 // Call rest api to update  weddingApp data into database
 updateDetails(uploadData){ 
 	console.log(uploadData);
-	return this.http.post(AppConfig.uploadUrl,uploadData, {headers: this.headers})
+	return this.http.post(AppConfig.uploadvenueUrl,uploadData, {headers: this.headers})
 	.map(data => data.json(),
 		(error: any)=>this.handleError(error));
 }
@@ -34,12 +49,17 @@ updateCatering(updateCatering){
   .map(data => data.json(),
     (error: any)=>this.handleError(error));
 }
-// Call rest api to login user into user database
-loginUser(loginDetails){ 
-  return this.http.post(AppConfig.getUrl+'/login',loginDetails, {headers: this.headers})
-  .map(data =>data.json(),
-    (error:any) =>this.handleError(error));
+
+// Call rest api to get Catering Provider data from database
+getCatering(){ 
+ // console.log(cateringData);
+ return this.http.get(AppConfig.getcateringUrl)
+ .map(cateringData => cateringData.json(),
+   (error: any)=>this.handleError(error));
 }
+
+
+
 // Handle errors
 private handleError(error: Response){
   return Observable.throw(error);

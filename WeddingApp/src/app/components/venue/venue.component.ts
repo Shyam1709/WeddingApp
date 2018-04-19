@@ -17,6 +17,12 @@ export class VenueComponent implements OnInit {
     this.getvenueDetails();
   }
 
+// set movie to update
+setMovie(event){
+  //this.currentMovie=event.movie;
+  
+}
+
  // get data of venue details from database
   getvenueDetails() {
     this.weddingApiService.getvenueDetails().subscribe((res) =>{
