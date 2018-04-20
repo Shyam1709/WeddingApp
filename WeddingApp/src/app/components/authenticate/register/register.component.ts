@@ -18,8 +18,8 @@ export class RegisterComponent implements OnInit{
 }
 ngOnInit(){
   this.form = new FormGroup({
-        name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)] ), 
-        email: new FormControl('', [Validators.required, Validators.pattern("[^ @]*@[^ @]*")]),
+        userName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)] ), 
+        emailId: new FormControl('', [Validators.required, Validators.pattern("[^ @]*@[^ @]*")]),
         password: new FormControl('', [Validators.required,Validators.minLength(6), Validators.maxLength(10)]),
         });
   this.checkPassword=false;
@@ -36,8 +36,9 @@ this.checkPassword=true;
 
 //to send user details to the database
  onSubmit(form){
+   console.log(form.value);
    this.weddingApiService.register(form.value).subscribe((res)=>{      
-        res={};
+        console.log(res);
     },(error:any)=>{
       this.errorMsg = error.statusText;
       this.showError = true;

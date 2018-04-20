@@ -8,8 +8,8 @@
       </div>
     </form>
     <div class="row mt-5">
-      <div class="col-md-3 pl-0">
-        <input class="form-control mt-5" id="myInput" type="text" placeholder="Search City..">
+      <div class="col-md-2 col-sm-3 list-set">
+        <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City..">
         <br>
         <ul class="list-group" id="myList">
           <li class="list-group-item">Ahmedabad</li>
@@ -23,7 +23,7 @@
           <li class="list-group-item">Mumbai</li>
           <li class="list-group-item">Pune</li>
         </ul> 
-        <ul class="list-group mt-5" id="myList">
+        <ul class="list-group mt-5 text-center" id="typeList">
           <li class="list-group-item list-group-item-primary">Select by Type</li>
           <a class="list-group-item">Banquet Hall</a>
           <a class="list-group-item">Farm House</a>
@@ -31,20 +31,20 @@
           <a class="list-group-item">Hotel</a>
         </ul>   
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10 col-sm-9 mR15">
         <div class="container pb-4 mt-5">
           <div class="row">
-            <div class="col-md-4" *ngFor="let item of venue">
+            <div class="col-md-4 col-sm-6 mr-0 pr-0" *ngFor="let item of venue">
                 <div class="card" >
                   <img class="img-fluid" [attr.src]="imageUrl+item.venue_image" alt="{{item.venueName}} image not found">
                   <div class="card-body">
                     <h6 class="card-title">{{item.venueName}}<span class="float-right bg-warning">{{item.venue_rating}}<i class="fa fa-star"></i></span></h6>
                     <p class="card-text"><i class="fas fa-map-marker-alt"></i>  {{item.location}}</p>
                     <p class="card-text">City: {{item.city}}</p>
-                    <p class="card-text">Type: {{item.type}}<span class="float-right">No of Guests:</span></p>
-                    <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}<span class="float-right bg-success guest"><i class="fa fa-users"></i>&nbsp;{{item.capacity}}</span></p>
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Enquiry</a>
-                    <a href="#" class="btn btn-primary btn-sm">Book Now</a>
+                    <p class="card-text">Type: {{item.type}}<span class="float-right">Guests:</span></p>
+                    <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}<span class="float-right guest"><i class="fa fa-users"></i>&nbsp;{{item.capacity}}</span></p>
+                    <a href="#" class="btn btn-primary btn-sm fix-btn" data-toggle="modal" data-target="#exampleModalCenter">Enquiry</a>
+                    <a href="#" class="btn btn-primary btn-sm fix-btn">Book Now</a>
                   </div>
                 </div>
               </div>
@@ -54,9 +54,9 @@
       </div>
 
    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Launch demo modal
-</button>
+</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

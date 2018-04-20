@@ -14,6 +14,7 @@ export class WeddingApiService {
 
 //Call rest api to register user into user database
 register(registerDetails){ 
+  console.log(registerDetails);
   return this.http.post(AppConfig.saveuserUrl,registerDetails, {headers: this.headers})
   .map(data =>data.json(),
     (error:any) =>this.handleError(error));

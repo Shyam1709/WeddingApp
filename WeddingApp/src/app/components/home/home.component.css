@@ -1,3 +1,19 @@
 .size{
   height: 420px;
 }
+
+.venue-fit{
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+.img-text{
+  opacity: 0.9;
+}
+.set-text{
+  color: red;
+  text-align: center;
+  font-weight: bolder;
+  top: 50%;
+  left: 45%;
+}

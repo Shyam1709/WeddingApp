@@ -9,15 +9,147 @@ ul{
   text-align: center;
 }
 
+
+
+
+/* css for extra small devices*/
+@media (max-width: 576px){
+
+  ul{
+    font-size: 10px;
+    padding: 10px;
+  }
+  .card{
+    padding-right: 0px;
+    padding-bottom: 20px;
+    padding-left: 1px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    box-shadow: 3px 5px #888888;
+  }
+  .mR15 {
+    margin-right: 15px;
+  }
+
+  .card-body{
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  .card-text{
+    font-size: 12px;
+    padding-bottom: 2px;
+  }
+  .fix-btn{
+    font-size: 12px;
+    padding: 2px;
+  }
+  p{
+    line-height:3px;
+  }
+  .guest{
+   font-size: 12px;
+ }
+ h6{
+  font-size: 12px;
+}
+}
+
+
+
+/* css for small devices*/
+@media (min-width: 576px) and (max-width: 768px){
+  ul{
+    font-size: 10px;
+  }
+
+  .card{
+    margin-bottom: 22px;
+    width: 100%;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 1px;
+    margin-right: 0px;
+    box-shadow: 3px 5px #888888;
+  }
+  .card-body{
+    padding-bottom: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .card-text{
+    font-size: 10px;
+    padding-bottom: 2px;
+  }
+  .fix-btn{
+    font-size: 12px;
+    padding: 2px;
+  }
+  p{
+    line-height:3px;
+  }
+  .guest{
+   font-size: 12px;
+ }
+ h6{
+  font-size: 12px;
+}
+}
+
+
+/* css for medium devices*/
+@media (min-width: 768px) and (max-width: 991px){
+ ul{
+  font-size: 12px;
+  padding:0px;
+  margin: 0px;
+}
+.list-set{
+margin-left: 0;
+margin-right: 0;
+}
+
+.card{
+  margin-bottom: 22px;
+  width: 100%;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 1px;
+  margin-right: 0px;
+  box-shadow: 3px 5px #888888;
+}
+.card-body{
+  padding-bottom: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.card-text{
+  font-size: 12px;
+  padding-bottom: 2px;
+}
+.fix-btn{
+  font-size: 12px;
+  padding: 2px;
+}
+p{
+  line-height:6px;
+}
+.guest{
+ font-size: 12px;
+}
+h6{
+  font-size: 12px;
+}
+}
+
 /* css for large devices */
 @media (min-width: 992px) and (max-width: 1500px) {
   .card{
-   /* height:90%; 
-    margin-bottom: 22px;
-    */
     margin-bottom: 22px;
     max-width: 20 rem;
-    padding-bottom: 0px;
+    padding-bottom: 3px;
+    padding-left: 3px;
     box-shadow: 3px 5px #888888;
   }
   .card-body{
@@ -35,7 +167,8 @@ ul{
     line-height:3px;
   }
   .guest{
-   font-size: 18px;
-  }
+   font-size: 14px;
+ }
 
 }
+

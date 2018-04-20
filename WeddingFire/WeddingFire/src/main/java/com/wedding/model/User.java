@@ -14,9 +14,7 @@ public class User {
 	private String password;
 	private String role = "user";
 
-	public String getUserName() {
-		return userName;
-	}
+	
 
 	public User() {
 	}
@@ -26,7 +24,9 @@ public class User {
 		this.emailId = emailId;
 		this.password = password;
 	}
-
+	public String getUserName() {
+		return userName;
+	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}

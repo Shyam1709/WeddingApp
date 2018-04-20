@@ -6,31 +6,33 @@ import { AppConfig }from '../../config/config.constant';
   selector: 'app-venue',
   templateUrl: './venue.component.html',
   styleUrls: ['./venue.component.css'],
-    providers:[WeddingApiService]
+  providers:[WeddingApiService]
 })
 export class VenueComponent implements OnInit {
- public venue: any=[];
- public imageUrl=AppConfig.getimageUrl;
+  public venue: any=[];
+  public imageUrl=AppConfig.getimageUrl;
+  public errorMsg="";
+  public showerror : boolean = false;
   constructor(private weddingApiService: WeddingApiService) { }
 
   ngOnInit() {
     this.getvenueDetails();
   }
 
-// set movie to update
-setMovie(event){
-  //this.currentMovie=event.movie;
-  
+// enquiry form
+enquiry(){
+
 }
 
  // get data of venue details from database
-  getvenueDetails() {
-    this.weddingApiService.getvenueDetails().subscribe((res) =>{
-      this.venue = res;
-      console.log(this.venue);
-    },(error:any)=>{
-console.log(error);
-    })
-  }
+ getvenueDetails() {
+   this.weddingApiService.getvenueDetails().subscribe((res) =>{
+     this.venue = res;
+     console.log(this.venue);
+   },(error:any)=>{
+     this.errorMsg = error.statusText;
+     this.showerror = true;
+   })
+ }
 
 }
