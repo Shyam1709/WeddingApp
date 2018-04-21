@@ -11,7 +11,7 @@
       <div class="col-md-2 col-sm-3 list-set">
         <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City..">
         <br>
-        <ul class="list-group" id="myList">
+        <ul class="list-group text-center" id="myList">
           <li class="list-group-item">Ahmedabad</li>
           <li class="list-group-item">Bangalore</li>
           <li class="list-group-item">Chennai</li>
@@ -53,28 +53,28 @@
         </div>
       </div>
 
-   <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button> -->
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Enquiry Form</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+       <form> 
+          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name" >
+          <input class="form-control mb-3" type="text" name="emailId" placeholder="Enter your EmailId">
+          <input class="form-control mb-3" type="text" name="contactNo" placeholder="Enter your contactNo">
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Submitt</button>
       </div>
     </div>
   </div>
 </div> 
+<!-- Modal ends here -->

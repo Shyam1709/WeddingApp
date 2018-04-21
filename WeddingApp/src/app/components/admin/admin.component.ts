@@ -44,16 +44,17 @@ export class AdminComponent implements OnInit {
 //to update current venue details in the database
 onSubmit(updateData) {
   updateData.venue_image=this.selectedFile.name;
-  console.log(updateData);
+  // console.log(updateData);
   this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
     console.log(data);
   },(error:any)=>{
   })
 }
 
+//
 onClick(updateCatering) {
   updateCatering.venue_image=this.selectedFile.name;
-  console.log(updateCatering);
+  // console.log(updateCatering);
   this.weddingApiService.updateCatering(this.updateCatering).subscribe(data=>{
     console.log(data);
   },(error:any)=>{

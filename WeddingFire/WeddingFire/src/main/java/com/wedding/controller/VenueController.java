@@ -33,7 +33,7 @@ public class VenueController {
 		this.venueRepository = venueRepository;
 	}
 
-	// to save venue details in the database 
+	// to save venue details in the database
 	@RequestMapping(value = "/venue", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> add(@RequestBody Venue venue) {
 		Map<String, String> response = new HashMap<String, String>();
@@ -41,8 +41,8 @@ public class VenueController {
 		response.put("ok", "Venue added Succesfuly");
 		return ResponseEntity.accepted().body(response);
 	}
-	
-	// to get venue details from database 
+
+	// to get venue details from database
 	@RequestMapping(value = "/venue/getdetails", method = RequestMethod.GET)
 	public List<Venue> getAll() {
 		return venueRepository.findAll();
@@ -64,11 +64,21 @@ public class VenueController {
 		}
 
 	}
+	
+	//to search venue by city in mongodb database
+	@RequestMapping(value="/venue/city/search/city={city}", method= RequestMethod.GET)
+	public ResponseEntity<List<Venue>> searchbyCity(@PathVariable String city ){
+	     
+		return ResponseEntity.ok().body(venueRepository.findByCity(city));
+		
+	}
+	
+	
 
 	// to get venue images from mongodb database
 	@RequestMapping(value = "/venue/getimages/{image_path}", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<InputStreamResource> getImage(@PathVariable String image_path) throws IOException {
-		ClassPathResource imgFile = new ClassPathResource("images/"+ image_path + ".png");
+		ClassPathResource imgFile = new ClassPathResource("images/" + image_path + ".png");
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG)
 				.body(new InputStreamResource(imgFile.getInputStream()));
 	}

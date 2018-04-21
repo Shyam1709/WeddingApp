@@ -1,8 +1,6 @@
 package com.wedding.model;
 
 
-
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -13,8 +11,6 @@ public class User {
 	private String emailId;
 	private String password;
 	private String role = "user";
-
-	
 
 	public User() {
 	}

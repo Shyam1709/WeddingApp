@@ -145,6 +145,9 @@ h6{
 
 /* css for large devices */
 @media (min-width: 992px) and (max-width: 1500px) {
+  ul{
+    text-align: center;
+  }
   .card{
     margin-bottom: 22px;
     max-width: 20 rem;
