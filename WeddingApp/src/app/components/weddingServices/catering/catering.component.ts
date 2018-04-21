@@ -24,7 +24,6 @@ export class CateringComponent implements OnInit {
    	debugger
    	this.weddingApiService.getCatering().subscribe((res) =>{
    		this.cateringProvider = res;
-   		console.log(this.cateringProvider);
    	},(error:any)=>{
    		console.log(error);
    	})

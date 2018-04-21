@@ -59,6 +59,12 @@ getCatering(){
    (error: any)=>this.handleError(error));
 }
 
+// call rest api to search venue by name
+searchbyName(name){
+  return this.http.get(AppConfig.searchByName + name)
+  .map(searchData =>searchData.json(),
+    (error: any)=>this.handleError(error));
+}
 
 
 // Handle errors

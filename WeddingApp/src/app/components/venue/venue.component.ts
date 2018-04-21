@@ -19,6 +19,14 @@ export class VenueComponent implements OnInit {
     this.getvenueDetails();
   }
 
+//to search venue by name
+search(name){
+  this.weddingApiService.searchbyName(name).subscribe((res)=>{
+    this.venue=res;
+  },(error:any)=>{
+  })
+}
+
 // enquiry form
 enquiry(){
 

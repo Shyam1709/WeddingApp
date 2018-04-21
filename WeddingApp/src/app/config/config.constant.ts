@@ -1,6 +1,6 @@
 export class AppConfig{
 	// public static search_api="https://api.themoviedb.org/3/search/movie?api_key=d3f52c1a9668c85909b9f50188e541b7&language=en-US&include_adult=false&query=";
-	//to upload image on the server by admin
+	// to upload image on the server by admin
 	public static postimageUrl="http://localhost:8095/wedding/venue/images";
 	
 	//to get image from database
@@ -21,6 +21,12 @@ export class AppConfig{
 	// to save user credentials in the database
 	public static saveuserUrl="http://localhost:8095/user/register";
 
- //to authenticate the user for login
+ // to authenticate the user for login
  public static validateuserUrl="http://localhost:8095/user/login";
+
+ // to search venue by city
+ public static searchByCity="http://localhost:8095/wedding/venue/city";
+
+ // to search venue by name
+ public static searchByName="http://localhost:8095/wedding/venue/search/name="; 
 }

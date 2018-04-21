@@ -1,9 +1,9 @@
   <div class="container"> 
     <form class="col-md-6 mx-auto">
       <div class="input-group mt-5">
-        <input type="text" id="movieTitle" class="form-control"  placeholder="Search venue..." name="movieTitle">
+        <input type="text" id="movieTitle" class="form-control"  placeholder="Search venue..." name="movieTitle" #name>
         <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i></button>
+          <button class="btn btn-primary" type="submit" (click)=search(name.value)> <i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
