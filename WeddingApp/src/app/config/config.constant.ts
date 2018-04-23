@@ -25,8 +25,8 @@ export class AppConfig{
  public static validateuserUrl="http://localhost:8095/user/login";
 
  // to search venue by city
- public static searchByCity="http://localhost:8095/wedding/venue/city";
+ public static searchByCityUrl="http://localhost:8095/wedding/venue/search/city=";
 
  // to search venue by name
- public static searchByName="http://localhost:8095/wedding/venue/search/name="; 
+ public static searchByNameUrl="http://localhost:8095/wedding/venue/search/name="; 
 }

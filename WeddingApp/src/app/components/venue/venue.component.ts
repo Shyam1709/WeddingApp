@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeddingApiService } from '../../services/wedding-api.service';
-import { AppConfig }from '../../config/config.constant';
+import { AppConfig } from '../../config/config.constant';
+import { CITY } from './citylist';
 
 @Component({
   selector: 'app-venue',
@@ -13,15 +14,25 @@ export class VenueComponent implements OnInit {
   public imageUrl=AppConfig.getimageUrl;
   public errorMsg="";
   public showerror : boolean = false;
-  constructor(private weddingApiService: WeddingApiService) { }
-
+  public cities=[];
+  constructor(private weddingApiService: WeddingApiService) { 
+    this.cities=CITY;
+  }
   ngOnInit() {
     this.getvenueDetails();
   }
 
 //to search venue by name
 search(name){
-  this.weddingApiService.searchbyName(name).subscribe((res)=>{
+  this.weddingApiService.searchByName(name).subscribe((res)=>{
+    this.venue=res;
+  },(error:any)=>{
+  })
+}
+
+//to search venue by city
+searchCity(city){
+  this.weddingApiService.searchByCity(city).subscribe((res)=>{
     this.venue=res;
   },(error:any)=>{
   })

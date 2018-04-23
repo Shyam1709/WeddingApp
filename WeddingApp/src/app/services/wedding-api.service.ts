@@ -35,13 +35,28 @@ getvenueDetails(){
     (error: any)=>this.handleError(error));
 }
 
-// Call rest api to update  weddingApp data into database
-updateDetails(uploadData){ 
-	console.log(uploadData);
-	return this.http.post(AppConfig.uploadvenueUrl,uploadData, {headers: this.headers})
+// Call rest api to get wedding venue details from database by name
+searchByName(name){ 
+	return this.http.get(AppConfig.searchByNameUrl+name, {headers: this.headers})
 	.map(data => data.json(),
 		(error: any)=>this.handleError(error));
 }
+
+// Call rest api to get wedding venue details from database by city
+searchByCity(city){ 
+  return this.http.get(AppConfig.searchByCityUrl+city, {headers: this.headers})
+  .map(data => data.json(),
+    (error: any)=>this.handleError(error));
+}
+
+// Call rest api to search  wedding venue by name from database
+updateDetails(uploadData){ 
+  console.log(uploadData);
+  return this.http.post(AppConfig.uploadvenueUrl,uploadData, {headers: this.headers})
+  .map(data => data.json(),
+    (error: any)=>this.handleError(error));
+}
+
 
 // Call rest api to update  Catering Provider data into database
 updateCatering(updateCatering){ 
@@ -59,12 +74,6 @@ getCatering(){
    (error: any)=>this.handleError(error));
 }
 
-// call rest api to search venue by name
-searchbyName(name){
-  return this.http.get(AppConfig.searchByName + name)
-  .map(searchData =>searchData.json(),
-    (error: any)=>this.handleError(error));
-}
 
 
 // Handle errors
