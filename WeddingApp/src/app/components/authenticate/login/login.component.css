@@ -99,17 +99,3 @@ fieldset {
   border: 1px solid #aaa;
 }
 
-.selectpicker{
-    width: 200px;
-    height: 30px;
-    background-color: blue;
-    border-style: solid;
-    border-left-width: 3px;
-    border-top: none;
-    border-bottom: none;
-    border-right: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 200;
-    padding-left: 6px;
-}

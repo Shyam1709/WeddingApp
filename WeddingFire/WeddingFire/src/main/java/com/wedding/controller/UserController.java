@@ -48,15 +48,15 @@ public class UserController {
 			return ResponseEntity.accepted().body(response);
 		} else if ((userRepository.findOneByEmailId(email) == null)
 				&& (userRepository.findOneByPassword(password) == null)) {
-			response.put("error_both", "LogIn Failed! Please Enter valid Email and password");
+			response.put("error", "LogIn Failed! Please Enter valid Email and password");
 			return ResponseEntity.badRequest().body(response);
 		}
 
 		else if (userRepository.findOneByEmailId(email) == null) {
-			response.put("error_emailId", "LogIn Failed! Please Enter valid Email");
+			response.put("error", "LogIn Failed! Please Enter valid Email");
 			return ResponseEntity.badRequest().body(response);
 		} else {
-			response.put("error_password", "LogIn Failed! Please Enter valid Password");
+			response.put("error", "LogIn Failed! Please Enter valid Password");
 			return ResponseEntity.badRequest().body(response);
 		}
 

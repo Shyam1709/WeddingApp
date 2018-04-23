@@ -19,8 +19,7 @@
           </div>
         </fieldset>
         <fieldset>
-          <input placeholder="Enter your Password" type="password"
-          [(ngModel)]="loginDetails.password" name="password" id="pwd"  minlength="6" maxlength="10"  required  #password='ngModel'>
+          <input placeholder="Enter your Password" type="password" [(ngModel)]="loginDetails.password" name="password" id="pwd"  minlength="6" maxlength="10"  required  #password='ngModel'>
           <div *ngIf="password.invalid" class="text-danger" >
             <div *ngIf="password.errors?.required && password.touched">
               Password is required.
