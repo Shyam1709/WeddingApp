@@ -28,7 +28,7 @@ login(loginDetails){
   title: '',
   text: "Loged in Successfully",
   type: 'success',
-  showConfirmButton:false,
+  showConfirmButton:true,
 })			
 			this.router.navigate(['/home']);
 		},(error:any)=>{

@@ -42,9 +42,8 @@ public class UserController {
 		String email = String.valueOf(user.getEmailId());
 		String password = String.valueOf(user.getPassword());
 		if ((userRepository.findOneByEmailId(email) != null) && (userRepository.findOneByPassword(password) != null)) {
-
-			String role = String.valueOf(userRepository.findUserByEmailId());
-			response.put("ok", role);
+		 
+			response.put("ok", String.valueOf(userRepository.findUserByEmailId()));
 			return ResponseEntity.accepted().body(response);
 		} else if ((userRepository.findOneByEmailId(email) == null)
 				&& (userRepository.findOneByPassword(password) == null)) {

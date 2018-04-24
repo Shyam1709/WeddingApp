@@ -1,6 +1,9 @@
 package com.wedding.model;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -9,13 +12,26 @@ public class EnquiryForm {
     private String id;
 	private String name;
 	private String email;
-	private Integer contactNo;
+	private Long contactNo;
+	private Date date;
+	private String userId;
 	private String query_message;
     
 	public EnquiryForm() {
 	}
 
-	public EnquiryForm(String id,String name, String email, Integer contactNo, String query_message) {
+
+	public Date getDate() {
+		return date;
+	}
+
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+
+	public EnquiryForm(String id,String name, String email, Long contactNo, String query_message) {
 		this.id=id;
 		this.name = name;
 		this.email = email;
@@ -26,6 +42,16 @@ public class EnquiryForm {
 	public String getName() {
 		return name;
 	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 
 	public void setName(String name) {
 		this.name = name;
@@ -39,11 +65,11 @@ public class EnquiryForm {
 		this.email = email;
 	}
 
-	public Integer getContactNo() {
+	public Long getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(Integer contactNo) {
+	public void setContactNo(Long contactNo) {
 		this.contactNo = contactNo;
 	}
 
