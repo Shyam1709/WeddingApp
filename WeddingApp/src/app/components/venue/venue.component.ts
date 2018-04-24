@@ -35,6 +35,7 @@ searchCity(city){
   this.weddingApiService.searchByCity(city).subscribe((res)=>{
     this.venue=res;
   },(error:any)=>{
+    console.log(error);
   })
 }
 
