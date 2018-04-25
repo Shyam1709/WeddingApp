@@ -49,6 +49,13 @@ searchByCity(city){
     (error: any)=>this.handleError(error));
 }
 
+// Call rest api to get wedding venue details from database by venuetype
+searchByType(venuetype){ 
+  return this.http.get(AppConfig.searchByTypeUrl+venuetype, {headers: this.headers})
+  .map(data => data.json(),
+    (error: any)=>this.handleError(error));
+}
+
 // Call rest api to search  wedding venue by name from database
 updateDetails(uploadData){ 
   console.log(uploadData);

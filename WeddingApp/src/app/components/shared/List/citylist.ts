@@ -1,9 +1,9 @@
 
 export const CITY=[
-{ id: 1, name: 'Ahmedabad' },
+{ id: 1, name: 'Ahmedabad'},
 { id: 2, name: 'Bangalore' },
 { id: 3, name: 'Chennai' },
-{ id: 4, name: 'Delhi' },
+{ id: 4, name: 'Delhi'},
 { id: 5, name: 'Ghaziabad' },
 { id: 6, name: 'Hyderabad' },
 { id: 7, name: 'Jaipur' },

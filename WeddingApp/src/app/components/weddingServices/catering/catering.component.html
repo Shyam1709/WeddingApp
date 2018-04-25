@@ -16,16 +16,7 @@
       <input class="form-control mt-5" id="myInput" type="text" placeholder="Search City..">
       <br>
       <ul class="list-group" id="myList">
-        <li class="list-group-item">Ahmedabad</li>
-        <li class="list-group-item">Bangalore</li>
-        <li class="list-group-item">Chennai</li>
-        <li class="list-group-item">Delhi</li>
-        <li class="list-group-item">Ghaziabad</li>
-        <li class="list-group-item">Hyderabad</li>
-        <li class="list-group-item">Jaipur</li>
-        <li class="list-group-item">Kolkata</li>
-        <li class="list-group-item">Mumbai</li>
-        <li class="list-group-item">Pune</li>
+         <li><a class="list-group-item" *ngFor="let city of cities" (click)="searchCity(city.name)">{{city.name}}</a></li>
       </ul> 
       <ul class="list-group mt-5" id="myList">
         <li class="list-group-item list-group-item-primary">Select by Budget</li>

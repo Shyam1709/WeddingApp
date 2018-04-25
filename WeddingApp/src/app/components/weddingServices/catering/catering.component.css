@@ -10,6 +10,10 @@ img{
   background-color: red;
 }
 
+a{
+  cursor: pointer;
+}
+
 /* css for large devices */
 @media (min-width: 992px) and (max-width: 1500px) {
 .card{

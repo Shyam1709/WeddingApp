@@ -76,6 +76,12 @@ public class VenueController {
 	public ResponseEntity<List<Venue>> searchbyName(@PathVariable String name) {
 		return ResponseEntity.ok().body(venueRepository.findByVenueNameLike(name));
 	}
+	
+	// to search venue by type in mongodb database
+	@RequestMapping(value = "/venue/search/type={type}", method = RequestMethod.GET)
+	public ResponseEntity<List<Venue>> searchbyType(@PathVariable String type) {
+		return ResponseEntity.ok().body(venueRepository.findByTypeLike(type));
+	}
 
 	// to get venue images from mongodb database
 	@RequestMapping(value = "/venue/getimages/{image_path}", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)

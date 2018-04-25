@@ -29,4 +29,18 @@ export class AppConfig{
 
  // to search venue by name
  public static searchByNameUrl="http://localhost:8095/wedding/venue/search/name="; 
+
+// to search venue by type
+ public static searchByTypeUrl="http://localhost:8095/wedding/venue/search/type="; 
+
+// to search cateringProvider by city
+ public static searchcateringByCityUrl="http://localhost:8095/catering/cateringProviders/search/city=";
+
+ // to search cateringProvider by name
+ public static searchcateringByNameUrl="http://localhost:8095/catering/cateringProviders/search/name="; 
+
+// to search cateringProvider by price
+ public static searchcateringByPriceUrl="http://localhost:8095/catering/cateringProviders/search/price="; 
+
+
 }

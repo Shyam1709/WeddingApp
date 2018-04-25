@@ -12,6 +12,8 @@ private String city;
 private String location;
 private Double rating;
 private Long contactNo;
+private Integer price;
+private String description;
 private String image_path;
 public String getImage_path() {
 	return image_path;
@@ -25,8 +27,7 @@ public Long getContactNo() {
 public void setContactNo(Long contactNo) {
 	this.contactNo = contactNo;
 }
-private Integer price;
-private String description;
+
 
 public CateringProvider() {
 	
