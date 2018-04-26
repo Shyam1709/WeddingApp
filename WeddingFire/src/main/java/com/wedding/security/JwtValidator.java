@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class JwtValidator {
 
 
-    private String secret = "youtube";
+    private String secret = "Rish26Shyx13";
 
     public User validate(String token) {
 

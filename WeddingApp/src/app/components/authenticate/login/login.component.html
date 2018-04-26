@@ -10,7 +10,7 @@
             <div *ngIf="emailId.errors?.required && emailId.touched">
               EmailId is required
             </div>
-              <div *ngIf="emailId.errors?.pattern && emailId.touched">
+            <div *ngIf="emailId.errors?.pattern && emailId.touched">
               Enter valid EmailId
             </div>
             <div *ngIf="emailId.untouched && password.touched">

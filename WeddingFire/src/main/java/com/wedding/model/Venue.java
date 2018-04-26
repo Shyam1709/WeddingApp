@@ -4,17 +4,8 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class Venue {
-@Id
-private ObjectId id; 
-	public Integer getCapacity() {
-	return capacity;
-}
-public void setCapacity(Integer capacity) {
-	this.capacity = capacity;
-}
-public void setVenueName(String venueName) {
-	this.venueName = venueName;
-}
+	@Id
+	private ObjectId id;
 
 	private String venueName;
 	private String location;
@@ -24,10 +15,11 @@ public void setVenueName(String venueName) {
 	private String type;
 	private Integer capacity;
 	private String venue_image;
-	
+
 	public Venue() {
-		
+
 	}
+
 	public Venue(ObjectId id, String venueName, String location, String city, Double venue_rating, Integer price,
 			String type, String venue_image) {
 		this.id = id;
@@ -53,7 +45,7 @@ public void setVenueName(String venueName) {
 	}
 
 	public void setVenue_name(String venue_name) {
-		
+
 	}
 
 	public String getLocation() {
@@ -94,6 +86,18 @@ public void setVenueName(String venueName) {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setVenueName(String venueName) {
+		this.venueName = venueName;
 	}
 
 }

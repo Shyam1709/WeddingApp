@@ -12,22 +12,6 @@ export class WeddingApiService {
 	constructor(private http:Http) { 
 	}
 
-//Call rest api to register user into user database
-register(registerDetails){ 
-  console.log(registerDetails);
-  return this.http.post(AppConfig.saveuserUrl,registerDetails, {headers: this.headers})
-  .map(data =>data.json(),
-    (error:any) =>this.handleError(error));
-}
-
-
-//Call rest api to login user into user database
-loginUser(loginDetails){ 
-  return this.http.post(AppConfig.validateuserUrl,loginDetails, {headers: this.headers})
-  .map(data =>data.json(),
-    (error:any) =>this.handleError(error));
-}
-
 // Call rest api to get venue details from database
 getvenueDetails(){ 
   return this.http.get(AppConfig.getvenueUrl)

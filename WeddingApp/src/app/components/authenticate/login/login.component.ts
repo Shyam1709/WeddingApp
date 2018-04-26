@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeddingApiService } from '../../../services/wedding-api.service';
+import { AuthenticateUserService } from '../../../services/authenticate-user.service';
 import { Router } from "@angular/router";
 import Swal  from 'sweetalert2';
 
@@ -7,42 +7,45 @@ import Swal  from 'sweetalert2';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [WeddingApiService]
+  providers: [AuthenticateUserService]
 })
 export class LoginComponent implements OnInit {
 	public errorMsg ='';
 	public showError : boolean = false;
-	public er: any={};
+	public er="";
 	public loginDetails:any={};
   public role:any={};
-  constructor(private weddingApiService : WeddingApiService, private router: Router) { }
+  constructor(private authenticateUserService : AuthenticateUserService, private router: Router) { }
 
   ngOnInit() {
   }
 
 // to send login credentials to the server for authentication
 login(loginDetails){
-		this.weddingApiService.loginUser(loginDetails).subscribe((res)=>{
- this.role=res;
+  this.authenticateUserService.loginUser(loginDetails).subscribe((res)=>{
     Swal({
-  title: '',
-  text: "Loged in Successfully",
-  type: 'success',
-  showConfirmButton:true,
-})			
-			this.router.navigate(['/home']);
-		},(error:any)=>{
-			this.er=JSON.parse(error._body);
+      title: '',
+      text: "Loged in Successfully",
+      showConfirmButton: false,
+      type: 'success',
+      timer:1500,
+    })			
+    this.router.navigate(['/home']);
+  },(error:any)=>{
+    this.er=error.toString();
     Swal({
-  title: 'LoginFailed',
-  text: this.er.error,
-  type: 'warning',
-})
-			this.errorMsg = error.statusText;
-			this.showError = true;
-		})
+      title: 'LoginFailed',
+      text: this.er,
+      showConfirmButton: false,
+      type: 'warning',
+      timer: 1500,
 
-	}
+    })
+    this.errorMsg = error.statusText;
+    this.showError = true;
+  })
+
+}
 }
 
 

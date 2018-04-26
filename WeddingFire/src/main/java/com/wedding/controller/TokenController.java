@@ -1,5 +1,8 @@
 package com.wedding.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,20 +26,26 @@ public class TokenController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> generate(@RequestBody User user) {
+	public ResponseEntity<Map<String, String>> generate(@RequestBody User user) {
+		Map<String, String> response = new HashMap<String, String>();
 		String email = String.valueOf(user.getEmailId());
 		if (userRepository.findOneByEmailId(email) == null) {
-		return ResponseEntity.badRequest().body("Please enter valid emailId");
+			response.put("error", "Please enter valid emailId");
+			return ResponseEntity.badRequest().body(response);
 		}
 		User authenticateUser = userRepository.findOneByEmailId(email);
-		if (userRepository.findOneByEmailId(email) == null
-				&& !authenticateUser.getPassword().contentEquals(user.getPassword())) {
-			return ResponseEntity.badRequest().body("Please enter emailId and password");
-		} else if (!authenticateUser.getPassword().contentEquals(user.getPassword())) {
-			return ResponseEntity.badRequest().body("Please enter valid password");
+
+		if (!authenticateUser.getPassword().contentEquals(user.getPassword())) {
+			response.put("error", "Please enter valid password");
+			return ResponseEntity.badRequest().body(response);
+		}
+		if (authenticateUser != null && (authenticateUser.getPassword().contentEquals(user.getPassword()))) {
+			user.setRole(authenticateUser.getRole());
+			String token = jwtGenerator.generate(user);
+			response.put("token", token);
+			return ResponseEntity.ok().body(response);
 		} else {
-			String token= jwtGenerator.generate(user);
-	return ResponseEntity.ok().body(user.toString(),token);
+			return ResponseEntity.badRequest().build();
 		}
 	}
 }

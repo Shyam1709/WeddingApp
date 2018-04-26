@@ -6,7 +6,6 @@ import {NgForm} from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
-
 @Component({
 	selector: 'app-admin',
 	templateUrl: './admin.component.html',

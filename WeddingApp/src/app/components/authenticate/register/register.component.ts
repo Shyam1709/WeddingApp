@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { WeddingApiService } from '../../../services/wedding-api.service';
+import { AuthenticateUserService } from '../../../services/authenticate-user.service';
 import { Router } from "@angular/router";
+
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [WeddingApiService]
+  providers: [AuthenticateUserService]
 })
 export class RegisterComponent implements OnInit{
   private form:FormGroup;
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit{
   public checkPassword:boolean=false;
   public errorMsg ='';
   public showError : boolean = false;
-  constructor(private weddingApiService :WeddingApiService, private router:Router) { 
+  constructor(private authenticateUserService :AuthenticateUserService, private router:Router) { 
   }
   ngOnInit(){
     this.form = new FormGroup({
@@ -38,8 +39,13 @@ check(value:string){
 
 //to send user details to the database
 onSubmit(form){
-  this.weddingApiService.register(form.value).subscribe((res)=>{      
-    Swal("Registered Successfuly", "", "success")
+  this.authenticateUserService.register(form.value).subscribe((res)=>{      
+    Swal({
+      text: "Registered Successfully",
+      showConfirmButton: false,
+      type: 'success',
+      timer:1500,
+    })  
     this.router.navigate(['/login']);
   },(error:any)=>{
     this.errorMsg = error.statusText;

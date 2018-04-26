@@ -99,3 +99,7 @@ fieldset {
   border: 1px solid #aaa;
 }
 
+.animatedalert{
+  align-content: center;
+  margin: auto;
+}
