@@ -1,6 +1,5 @@
 package com.wedding.security;
 
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,19 +10,12 @@ import com.wedding.model.User;
 @Component
 public class JwtGenerator {
 
+	public String generate(User jwtUser) {
 
-    public String generate(User jwtUser) {
+		Claims claims = Jwts.claims().setSubject(jwtUser.getEmailId());
+		claims.put("userName", String.valueOf(jwtUser.getUserName()));
+		claims.put("role", jwtUser.getRole());
 
-
-        Claims claims = Jwts.claims()
-                .setSubject(jwtUser.getEmailId());
-        claims.put("password", String.valueOf(jwtUser.getPassword()));
-        claims.put("role", jwtUser.getRole());
-
-
-        return Jwts.builder()
-                .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, "Rish26Shyx13")
-                .compact();
-    }
+		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, "Rish26Shyx13").compact();
+	}
 }

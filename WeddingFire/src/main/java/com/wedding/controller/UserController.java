@@ -35,30 +35,6 @@ public class UserController {
 
 	}
 
-	// to authenticate user by validating login credentials
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, String>> login(@RequestBody User user) {
-		Map<String, String> response = new HashMap<String, String>();
-		String email = String.valueOf(user.getEmailId());
-		String password = String.valueOf(user.getPassword());
-		if ((userRepository.findOneByEmailId(email) != null) && (userRepository.findOneByPassword(password) != null)) {
-		 
-			response.put("ok", String.valueOf(userRepository.findUserByEmailId()));
-			return ResponseEntity.accepted().body(response);
-		} else if ((userRepository.findOneByEmailId(email) == null)
-				&& (userRepository.findOneByPassword(password) == null)) {
-			response.put("error", "LogIn Failed! Please Enter valid Email and password");
-			return ResponseEntity.badRequest().body(response);
-		}
-
-		else if (userRepository.findOneByEmailId(email) == null) {
-			response.put("error", "LogIn Failed! Please Enter valid Email");
-			return ResponseEntity.badRequest().body(response);
-		} else {
-			response.put("error", "LogIn Failed! Please Enter valid Password");
-			return ResponseEntity.badRequest().body(response);
-		}
-
-	}
+	
 
 }

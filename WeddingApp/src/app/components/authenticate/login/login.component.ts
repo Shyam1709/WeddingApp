@@ -6,8 +6,7 @@ import Swal  from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [AuthenticateUserService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 	public errorMsg ='';

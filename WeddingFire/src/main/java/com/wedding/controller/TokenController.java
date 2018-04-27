@@ -41,6 +41,7 @@ public class TokenController {
 		}
 		if (authenticateUser != null && (authenticateUser.getPassword().contentEquals(user.getPassword()))) {
 			user.setRole(authenticateUser.getRole());
+			user.setUserName(authenticateUser.getUserName());
 			String token = jwtGenerator.generate(user);
 			response.put("token", token);
 			return ResponseEntity.ok().body(response);

@@ -28,8 +28,7 @@ export class AdminComponent implements OnInit {
 
   onFileSelected(event){
     this.selectedFile=event.target.files[0];
-    console.log(this.selectedFile.name);
-    console.log(this.updateData.type);
+
   }
 
 
@@ -48,7 +47,6 @@ onSubmit(updateData) {
 //to update catering details in the database
 onClick(updateCatering) {
   updateCatering.venue_image=this.selectedFile.name;
-  // console.log(updateCatering);
   this.weddingApiService.updateCatering(this.updateCatering).subscribe(data=>{
 
   },(error:any)=>{

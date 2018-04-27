@@ -14,8 +14,7 @@ import { RegisterComponent } from './components/authenticate/register/register.c
 import { LoginComponent } from './components/authenticate/login/login.component';
 import { CateringComponent } from './components/weddingServices/catering/catering.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-
-
+import {  AuthenticateUserService } from './services/authenticate-user.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
   FormsModule,
   ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthenticateUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
