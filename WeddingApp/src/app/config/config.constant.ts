@@ -22,7 +22,10 @@ export class AppConfig{
 	public static saveuserUrl="http://localhost:8095/user/register";
 
  // to authenticate the user for login
- public static validateuserUrl="http://localhost:8095/login/token";
+ public static validateuserUrl="http://localhost:8095/user/login";
+
+ // to get role from server
+ public static getRoleUrl="http://localhost:8095/wedding/login/token/role";
 
  // to search venue by city
  public static searchByCityUrl="http://localhost:8095/wedding/venue/search/city=";

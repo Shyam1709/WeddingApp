@@ -10,6 +10,5 @@ public interface CateringProviderRepository extends MongoRepository<CateringProv
 	
 	public List<CateringProvider> findBycateringProviderLike(String cateringProvider);
 	public List<CateringProvider> findByCityLike(String city);
-	public List<CateringProvider> findByPriceLike(String price);
 	
 }

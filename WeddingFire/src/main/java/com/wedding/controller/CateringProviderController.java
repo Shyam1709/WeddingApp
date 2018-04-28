@@ -34,29 +34,23 @@ public class CateringProviderController {
 		response.put("ok", "catering provider added successfully");
 		return ResponseEntity.accepted().body(response);
 	}
-	
-	// to get catering provider details from database 
+
+	// to get catering provider details from database
 	@RequestMapping(value = "/cateringProviders/getdetails", method = RequestMethod.GET)
 	public List<CateringProvider> getAll() {
 		return cateringproviderRepository.findAll();
 	}
-	
+
 	// to search catering provider by name in mongodb database
-		@RequestMapping(value = "/cateringProviders/search/name={name}", method = RequestMethod.GET)
-		public ResponseEntity<List<CateringProvider>> searchbyName(@PathVariable String name) {
-			return ResponseEntity.ok().body(cateringproviderRepository.findByPriceLike(name));
-		}
-		
+	@RequestMapping(value = "/cateringProviders/search/name={name}", method = RequestMethod.GET)
+	public ResponseEntity<List<CateringProvider>> searchbyName(@PathVariable String name) {
+		return ResponseEntity.ok().body(cateringproviderRepository.findBycateringProviderLike(name));
+	}
+
 	// to search catering provider by city in mongodb database
 	@RequestMapping(value = "/cateringProviders/search/city={city}", method = RequestMethod.GET)
 	public ResponseEntity<List<CateringProvider>> searchbyCity(@PathVariable String city) {
 		return ResponseEntity.ok().body(cateringproviderRepository.findByCityLike(city));
-	}
-	
-	// to search catering provider by price in mongodb database
-	@RequestMapping(value = "/cateringProviders/search/price={price}", method = RequestMethod.GET)
-	public ResponseEntity<List<CateringProvider>> searchbyPrice(@PathVariable String price) {
-		return ResponseEntity.ok().body(cateringproviderRepository.findByPriceLike(price));
 	}
 
 }

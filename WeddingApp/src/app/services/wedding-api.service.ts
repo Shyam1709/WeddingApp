@@ -7,9 +7,11 @@ import { AppConfig }from '../config/config.constant';
 
 @Injectable()
 export class WeddingApiService {
-	private headers = new Headers({ 'Content-Type': 'application/json' });
-
+	private headers; 
+  private headerToken;
 	constructor(private http:Http) { 
+    this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+    this.headers= new Headers({ 'Authorization': 'Token ' + this.headerToken });
 	}
 
 // Call rest api to get venue details from database

@@ -15,6 +15,7 @@ import { LoginComponent } from './components/authenticate/login/login.component'
 import { CateringComponent } from './components/weddingServices/catering/catering.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import {  AuthenticateUserService } from './services/authenticate-user.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {  AuthenticateUserService } from './services/authenticate-user.service';
   LoginComponent,
   CateringComponent,
   DashboardComponent,
+  UserProfileComponent,
   ],
   imports: [
   BrowserModule,

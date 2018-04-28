@@ -4,37 +4,45 @@ import { Observable } from 'rxjs/Observable';
 import { Router,CanActivate } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { AppConfig }from '../config/config.constant';
-import * as jwt_decode from "jwt-decode";
 
 @Injectable()
 export class AuthenticateUserService implements CanActivate {
-	private headers = new Headers({ 'Content-Type': 'application/json' });
+	private headers:any;
 	public token:any;
 	public login : EventEmitter<any> = new EventEmitter();
-	constructor(private http:Http) { }
+	public headerToken;
+
+	constructor(private http:Http) {
+		this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+	 this.headers = new Headers({'Authorization' : 'Token ' + this.headerToken});
+	}
 
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
-	return this.http.post(AppConfig.validateuserUrl,loginDetails, {headers: this.headers})
+	return this.http.post(AppConfig.validateuserUrl,loginDetails)
 	.map((response:Response) =>{
 		this.token=response.json().token;
-		// let token= this.getDecodedAccessToken(this.tokenkey);
-		// let emailId=token.sub;
-		// console.log(emailId);
-		// let userName=token.userName;
 		if (this.token) {
-
 
       // store username and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
-      // return true to indicate successful login
-      return response;
-    } 
 
+      // return true to indicate successful login
+      if(JSON.parse(localStorage.getItem('currentUser'))['token']){
+      	this.login.emit(true);
+      	return true; 
+      }
+      else{
+      	this.login.emit(false);
+      	return false;
+      }
+      
+    }
+     return response;
   },
-  (error:any) =>{this.handleError(error)
-  	console.log(error);
+  (error:any) =>{
+  	this.handleError(error)
   });
 }
 
@@ -42,31 +50,36 @@ loginUser(loginDetails){
 // to check if user is logged in
 canActivate(){
 	console.log('inside isUserLoggedin');
-	if(localStorage.getItem('currentUser')){
-		this.login.emit(true);
-		return true;
-		
-	}
-	else{
-		this.login.emit(false);
-		return false;
-		
-	}
+	return true;
+
+	// if(localStorage.getItem('currentUser')){
+	// 	this.login.emit(true);
+	// 	return true;
+
+	// }
+	// else{
+	// 	this.login.emit(false);
+	// 	return false;
+
+	// }
 }
 
-
+getRole(Token){
+	return this.http.get((AppConfig.getRoleUrl),{headers: this.headers})
+	.map((data)=>{
+		data.json();
+		console.log(this.data);
+	},
+		(error:any) =>this.handleError(error));
+}
 
 logout() {
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
+        this.login.emit(false);
       }
 
-
-      getDecodedAccessToken(token){
-      	return jwt_decode(token);
-
-      }
 
 
 //Call rest api to register user into user database
@@ -84,3 +97,10 @@ private handleError(error){
 }
 
 }
+
+
+
+
+
+
+//eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGlhQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoic2hpa2doYSIsInJvbGUiOiJ1c2VyIn0.l_Dd3PI0-VnWbSi7efFWYMyLxVLksS0khCIjJD15D58-pkte0PNuxEa0b87LZL1HoJz0DjogaT61XUQqoVVnvg

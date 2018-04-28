@@ -8,6 +8,7 @@ import { LoginComponent } from './components/authenticate/login/login.component'
 import { RegisterComponent } from './components/authenticate/register/register.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { HomeComponent} from './components/home/home.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthenticateUserService} from './services/authenticate-user.service';
 
 
@@ -19,7 +20,8 @@ const routes :Routes = [
 {path: 'catering', component:CateringComponent },
 {path: 'login', component:LoginComponent },
 {path: 'register', component:RegisterComponent },
-{path: 'admin', component:AdminComponent }
+{path: 'admin', component:AdminComponent },
+{path: 'userProfile' , component:UserProfileComponent},
 
 {
   path: '',

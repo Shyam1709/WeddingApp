@@ -13,6 +13,8 @@ public class JwtUserDetails implements UserDetails {
     private String userName;
     private Collection<? extends GrantedAuthority> authorities;
 
+    public JwtUserDetails() {
+	}
 
     public JwtUserDetails(String emailId, String userName, String token, List<GrantedAuthority> grantedAuthorities) {
 

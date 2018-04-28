@@ -25,11 +25,10 @@ export class CateringComponent implements OnInit {
 
    // get data of catering Provider details from database
    getcateringDetails() {
-   	debugger
    	this.weddingApiService.getCatering().subscribe((res) =>{
    		this.cateringProvider = res;
    	},(error:any)=>{
-   		console.log(error);
+   		
    	})
    }
 
