@@ -7,14 +7,19 @@
         </span>
       </div>
     </form>
-    <div class="row mt-5">
-      <div class="col-md-2 col-sm-3 list-set">
-        <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City.."  #city (keyup.enter)="searchCity(city.value)">
-        <br>
-        <ul class="list-group text-center" id="myList">
-          <li><a class="list-group-item" *ngFor="let city of cities" (click)="searchCity(city.name)">{{city.name}}</a></li>
-       </ul> 
-       <ul class="list-group mt-5 text-center" id="typeList">
+    <div>
+      <ul>
+       <li *ngFor let filter of filters><span>{{filter}}</span></li> 
+     </ul>
+   </div>
+   <div class="row mt-3">
+    <div class="col-md-2 col-sm-3 list-set">
+      <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City.."  #city (keyup.enter)="searchCity(city.value)">
+      <br>
+      <ul class="list-group text-center" id="myList">
+        <li><a class="list-group-item" *ngFor="let city of cities" (click)="searchCity(city.name)">{{city.name}}</a></li>
+      </ul> 
+      <ul class="list-group mt-5 text-center" id="typeList">
         <li class="list-group-item list-group-item-primary">Select by Type</li>
         <a class="list-group-item" *ngFor="let venuetype of Venuetypes" (click)="searchVenueType(venuetype.name)">{{venuetype.name}}</a>
       </ul>   

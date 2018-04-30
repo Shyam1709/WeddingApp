@@ -17,6 +17,7 @@ export class VenueComponent implements OnInit {
   public showerror : boolean = false;
   public cities=[];
   public Venuetypes=[];
+  public filters=[];
   constructor(private weddingApiService: WeddingApiService) { 
     this.cities=CITY;
     this.Venuetypes=TYPE;

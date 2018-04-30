@@ -3,20 +3,21 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { AppConfig }from '../config/config.constant';
-
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class WeddingApiService {
-	private headers; 
-  private headerToken;
-	constructor(private http:Http) { 
-    this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-    this.headers= new Headers({ 'Authorization': 'Token ' + this.headerToken });
+
+	constructor( private http:Http ) { 
+
 	}
+
+  private headers= new Headers({ 'Content-Type': 'application/json' });
+
 
 // Call rest api to get venue details from database
 getvenueDetails(){ 
-  return this.http.get(AppConfig.getvenueUrl)
+  return this.http.get(AppConfig.getvenueUrl, {headers: this.headers}) 
   .map(data => data.json(),
     (error: any)=>this.handleError(error));
 }

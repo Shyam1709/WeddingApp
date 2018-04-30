@@ -13,8 +13,8 @@ export class AuthenticateUserService implements CanActivate {
 	public headerToken;
 
 	constructor(private http:Http) {
-		this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-	 this.headers = new Headers({'Authorization' : 'Token ' + this.headerToken});
+		//this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+		this.headers = new Headers({'Authorization' : this.headerToken});
 	}
 
 
@@ -39,7 +39,7 @@ loginUser(loginDetails){
       }
       
     }
-     return response;
+    return response;
   },
   (error:any) =>{
   	this.handleError(error)
@@ -68,9 +68,8 @@ getRole(Token){
 	return this.http.get((AppConfig.getRoleUrl),{headers: this.headers})
 	.map((data)=>{
 		data.json();
-		console.log(this.data);
 	},
-		(error:any) =>this.handleError(error));
+	(error:any) =>this.handleError(error));
 }
 
 logout() {
