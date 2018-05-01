@@ -40,6 +40,13 @@ onSubmit(updateData) {
   });  
   updateData.venue_image=this.selectedFile.name;
   this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
+        Swal({
+      title: 'Catering Details',
+      text: 'Successfully Added',
+      showConfirmButton: false,
+      type: 'success',
+      timer: 1500
+    })
   },(error:any)=>{
   })
 }
@@ -48,7 +55,13 @@ onSubmit(updateData) {
 onClick(updateCatering) {
   updateCatering.venue_image=this.selectedFile.name;
   this.weddingApiService.updateCatering(this.updateCatering).subscribe(data=>{
-
+    Swal({
+      title: 'Catering Details',
+      text: 'Successfully Added',
+      showConfirmButton: false,
+      type: 'success',
+      timer: 1500
+    })
   },(error:any)=>{
     this.errorMsg = error.statusText;
     this.showerror = true;

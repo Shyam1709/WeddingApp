@@ -14,7 +14,7 @@ import com.wedding.model.Booking;
 import com.wedding.repository.BookingRepository;
 
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("/rest/booking")
 public class BookingController {
 
 	BookingRepository bookingRepository;
@@ -25,7 +25,7 @@ public class BookingController {
 	
 	
 	// to save userdetails in the database via registration
-	@RequestMapping(value = "/booking", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/venue", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> add(@RequestBody Booking booking) {
 		Map<String, String> response = new HashMap<String, String>();
 

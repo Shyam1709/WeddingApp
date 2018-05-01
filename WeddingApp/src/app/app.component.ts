@@ -10,10 +10,17 @@ import { Router } from '@angular/router';
 
 
 export class AppComponent {
-	public login : EventEmitter<any> = new EventEmitter();
+	public log : boolean=false;
 	public role;
 	public headerToken: string;
 	constructor(){
-	
+	 if(localStorage.getItem('currentUser')!=null){
+     this.log=true;
+    // this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+    // this.headers = new Headers({'Authorization' : this.headerToken});
+  }
+  else{
+    this.log=false;
+  }
 }
 }

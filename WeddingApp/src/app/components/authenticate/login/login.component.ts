@@ -22,14 +22,7 @@ export class LoginComponent implements OnInit {
 // to send login credentials to the server for authentication
 login(loginDetails){
   this.authenticateUserService.loginUser(loginDetails).subscribe((res)=>{
-    Swal({
-      title: '',
-      text: "Loged in Successfully",
-      showConfirmButton: false,
-      type: 'success',
-      timer:1500,
-    })			
-    this.router.navigate(['/home']);
+    this.router.navigate(['/userProfile']);
   },(error:any)=>{
     this.er=error.toString();
     Swal({
@@ -37,8 +30,7 @@ login(loginDetails){
       text: this.er,
       showConfirmButton: false,
       type: 'warning',
-      timer: 1500,
-
+      timer: 1500
     })
     this.errorMsg = error.statusText;
     this.showError = true;

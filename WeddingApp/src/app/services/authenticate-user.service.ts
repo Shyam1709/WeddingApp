@@ -8,14 +8,19 @@ import { AppConfig }from '../config/config.constant';
 @Injectable()
 export class AuthenticateUserService implements CanActivate {
 	private headers:any;
-	public token:any;
+	private token:any;
 	public login : EventEmitter<any> = new EventEmitter();
 	public headerToken;
 
-	constructor(private http:Http) {
-		//this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-		this.headers = new Headers({'Authorization' : this.headerToken});
-	}
+	constructor(private http:Http,private router: Router) {
+    if(localStorage.getItem('currentUser')!=null){
+		// this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+    this.headers = new Headers({'Authorization' : this.headerToken});
+    this.login.emit(true);
+  }else{
+    this.login.emit(false);
+  }
+}
 
 
 //Call rest api to login user into user database using token authentication
@@ -46,6 +51,19 @@ loginUser(loginDetails){
   });
 }
 
+// to submit booking details in database
+onSubmit(booking){
+  return this.http.post(AppConfig.sendBookingDetailsUrl,booking,{headers:this.headerToken})
+  .map(data=>data.json(),
+    error=>{
+   this.handleError(error);
+    })
+}
+
+
+
+
+
 
 // to check if user is logged in
 canActivate(){
@@ -72,12 +90,13 @@ getRole(Token){
 	(error:any) =>this.handleError(error));
 }
 
+// to logout the user from website
 logout() {
-        // clear token remove user from local storage to log user out
-        this.token = null;
-        localStorage.removeItem('currentUser');
-        this.login.emit(false);
-      }
+     // clear token remove user from local storage to log user out
+     this.token = null;
+     localStorage.removeItem('currentUser');
+     this.router.navigate['/login'];
+   }
 
 
 
@@ -100,6 +119,3 @@ private handleError(error){
 
 
 
-
-
-//eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGlhQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoic2hpa2doYSIsInJvbGUiOiJ1c2VyIn0.l_Dd3PI0-VnWbSi7efFWYMyLxVLksS0khCIjJD15D58-pkte0PNuxEa0b87LZL1HoJz0DjogaT61XUQqoVVnvg

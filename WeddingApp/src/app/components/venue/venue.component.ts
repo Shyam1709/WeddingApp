@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeddingApiService } from '../../services/wedding-api.service';
+import {AuthenticateUserService } from '../../services/authenticate-user.service';
+
 import { AppConfig } from '../../config/config.constant';
 import { CITY } from '../shared/List/citylist';
 import { TYPE } from '../shared/List/type';
@@ -18,7 +20,9 @@ export class VenueComponent implements OnInit {
   public cities=[];
   public Venuetypes=[];
   public filters=[];
-  constructor(private weddingApiService: WeddingApiService) { 
+  public booking:any={};
+  public id:any;
+  constructor(private weddingApiService: WeddingApiService, private authenticateUserService:AuthenticateUserService) { 
     this.cities=CITY;
     this.Venuetypes=TYPE;
   }
@@ -38,6 +42,7 @@ search(name){
 searchCity(city){
   this.weddingApiService.searchByCity(city).subscribe((res)=>{
     this.venue=res;
+    this.filters.push(res);
   },(error:any)=>{
     console.log(error);
   })
@@ -47,21 +52,46 @@ searchCity(city){
 searchVenueType(venuetype){
   this.weddingApiService.searchByType(venuetype).subscribe((res)=>{
     this.venue=res;
+    this.filters.push(res);
+
   },(error:any)=>{
-    console.log(error);
+   
   })
 }
 
+//sending booking details on backend
+ onSubmit(booking) {
+booking.id=this.id;
+this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
+
+}),(error)=>{
+
+}
+  }
+
+send(id){
+this.id=id;
+  this.booking={};
+}
 // enquiry form
 enquiry(){
 
 }
 
+//remove search filter on click
+remove(i){
+   if(this.filters.length > 0){
+      this.filters.pop();
+    }
+}
+
+
  // get data of venue details from database
  getvenueDetails() {
    this.weddingApiService.getvenueDetails().subscribe((res) =>{
-     this.venue = res;
-     console.log(this.venue);
+    // this.filters.push(res);
+     this.venue=res;
+     // this.venue=this.filters[Array.length-1];
    },(error:any)=>{
      this.errorMsg = error.statusText;
      this.showerror = true;

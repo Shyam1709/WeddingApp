@@ -9,10 +9,12 @@
     </form>
     <div>
       <ul>
-       <li *ngFor let filter of filters><span>{{filter}}</span></li> 
-     </ul>
-   </div>
-   <div class="row mt-3">
+       <li *ngFor= "let filter of filters; let i= index" >
+<h4><span class="badge badge-secondary">{{filter.city}}</span><a (click)="remove(i)"><i class="fa fa-window-close" aria-hidden="true"></i></a></h4>
+  </li> 
+    </ul>
+  </div>
+  <div class="row mt-3">
     <div class="col-md-2 col-sm-3 list-set">
       <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City.."  #city (keyup.enter)="searchCity(city.value)">
       <br>
@@ -37,7 +39,7 @@
                 <p class="card-text">Type: {{item.type}}<span class="float-right">Guests:</span></p>
                 <p class="card-text">Price/Plate: <i class="fas fa-rupee-sign"></i> {{item.price}}<span class="float-right guest"><i class="fa fa-users"></i>&nbsp;{{item.capacity}}</span></p>
                 <a href="#" class="btn btn-primary btn-sm fix-btn" data-toggle="modal" data-target="#exampleModalCenter">Enquiry</a>
-                <a href="#" class="btn btn-primary btn-sm fix-btn">Book Now</a>
+                <a href="#" class="btn btn-primary btn-sm fix-btn" data-toggle="modal" data-target="#booking" (click)="send(item.id)">Book Now</a>
               </div>
             </div>
           </div>
@@ -66,6 +68,33 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Submitt</button>
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- Modal ends here -->
+
+  <!-- Modal for Booking -->
+  <div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Booking Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <form > 
+          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name">
+          <input class="form-control mb-3" [(ngModel)]="booking.emailId" type="email" name="emailId" placeholder="Enter your EmailId" #emailId='ngModel'>
+          <input class="form-control mb-3" [(ngModel)]="booking.contactNo" type="phone" name="contactNo" placeholder="Enter your contactNo" #contactNo='ngModel'>
+          <input class="form-control mb-3" [(ngModel)]="booking.date" type="date" name="date" #date='ngModel'>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit(booking)">Book Now</button>
       </div>
     </div>
   </div>

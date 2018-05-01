@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticateUserService } from '../../../services/authenticate-user.service';
 
@@ -9,19 +9,21 @@ import { AuthenticateUserService } from '../../../services/authenticate-user.ser
 })
 export class HeaderComponent implements OnInit {
 	public isLogin :boolean = false;
-	
-	constructor(private router: Router,private authenticateUserService: AuthenticateUserService ) {
+	@Input() login;
+	constructor(private authenticateUserService: AuthenticateUserService, private router: Router ) {
 		this.authenticateUserService.login.subscribe((login:any)=>{
 			this.isLogin=login;
+      console.log(this.isLogin);
 		});
 	}
 
 	ngOnInit() {
+     this.isLogin=this.login;
 	}
 
 	logout(){
-		this.router.navigate(['/home']);
 		this.authenticateUserService.logout();
+    this.router.navigate['/login'];
 
 	}
 

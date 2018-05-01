@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 
 public class Venue {
 	@Id
-	private ObjectId id;
+	private String id;
 
 	private String venueName;
 	private String location;
@@ -20,7 +20,7 @@ public class Venue {
 
 	}
 
-	public Venue(ObjectId id, String venueName, String location, String city, Double venue_rating, Integer price,
+	public Venue(String id, String venueName, String location, String city, Double venue_rating, Integer price,
 			String type, String venue_image) {
 		this.id = id;
 		this.venueName = venueName;
@@ -100,4 +100,11 @@ public class Venue {
 		this.venueName = venueName;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+
+
+	
 }
