@@ -10,7 +10,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { HomeComponent} from './components/home/home.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthenticateUserService} from './services/authenticate-user.service';
-
+import { RoleGuard } from './services/role-guard.guard';
 
 
 const routes :Routes = [
@@ -20,18 +20,11 @@ const routes :Routes = [
 {path: 'catering', component:CateringComponent },
 {path: 'login', component:LoginComponent },
 {path: 'register', component:RegisterComponent },
-{path: 'admin', component:AdminComponent },
-{path: 'userProfile' , component:UserProfileComponent},
-
-{
-  path: '',
-  component: DashboardComponent,
-  canActivate: [AuthenticateUserService],
-  children: [
-  {path: 'dashboard', component:DashboardComponent },
-  
-  ]
-}
+{path: 'userProfile' , component:UserProfileComponent, canActivate:[AuthenticateUserService]},
+{path: 'admin', component:AdminComponent, canActivate:[RoleGuard], data: { 
+  expectedRole: 'admin'}} ,
+{path: 'dashboard', component: DashboardComponent, canActivate:[RoleGuard], data: { 
+  expectedRole: 'admin'} }
 ];
 
 

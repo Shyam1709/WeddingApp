@@ -15,6 +15,8 @@ import { LoginComponent } from './components/authenticate/login/login.component'
 import { CateringComponent } from './components/weddingServices/catering/catering.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import {  AuthenticateUserService } from './services/authenticate-user.service';
+import { RoleGuard } from './services/role-guard.guard';
+
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
@@ -38,7 +40,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   FormsModule,
   ReactiveFormsModule
   ],
-  providers: [AuthenticateUserService],
+  providers: [AuthenticateUserService, RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

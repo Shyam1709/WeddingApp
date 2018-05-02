@@ -16,23 +16,21 @@ export class AuthenticateUserService implements CanActivate {
   constructor(private http:Http,private router: Router) {
     if(localStorage.getItem('currentUser')!=null){
       this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-   // this.headers = new Headers({'Authorization' : JSON.stringify(this.headerToken)});
-
-    
+   // this.headers = new Headers({'Authorization' : JSON.stringify(this.headerToken)})
    this.login.emit(true);
  }else{
    this.login.emit(false);
  }
 }
 
- private headers= new Headers({ 'Content-Type': 'application/json' });
+private headers= new Headers({ 'Content-Type': 'application/json' });
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
 	return this.http.post(AppConfig.validateuserUrl,loginDetails)
 	.map((response:Response) =>{
 		this.token=response.json().token;
-
+    this.role=response.json().role;
     if (this.token) {
       // store username and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
@@ -69,29 +67,33 @@ onSubmit(booking){
     })
 }
 
-
+//to check whether user is logged in or not
+isLoggedIn(){
+  if(JSON.parse(localStorage.getItem('currentUser'))['token']){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 
 
 
 // to check if user is logged in
 canActivate(){
-	console.log('inside isUserLoggedin');
-	return true;
-
-	// if(localStorage.getItem('currentUser')){
-	// 	this.login.emit(true);
-	// 	return true;
-
-	// }
-	// else{
-	// 	this.login.emit(false);
-	// 	return false;
-
-	// }
+  if(!this.isLoggedIn()){
+    this.router.navigate(['login']);
+    return false;
+  }
+  if(this.isLoggedIn && this.role=='user'){
+   return true;
+  }
+  this.router.navigate(['login']);
+return false;
 }
 
-getRole(Token){
+getRole(){
 	return this.http.get((AppConfig.getRoleUrl))
 	.map((data)=>{
 		data.json();

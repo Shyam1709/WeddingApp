@@ -57,6 +57,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    <groupId>uk.gov.nationalarchives</groupId>
+    <artifactId>utf8-validator</artifactId>
+    <version>1.2</version>
+</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
