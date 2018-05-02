@@ -55,22 +55,23 @@ searchVenueType(venuetype){
     this.filters.push(res);
 
   },(error:any)=>{
-   
+    
   })
 }
 
 //sending booking details on backend
- onSubmit(booking) {
-booking.id=this.id;
-this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
+onSubmit(booking) {
+  booking.id=this.id;
+  console.log(booking);
+  this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
+    console.log(res);
+  }),(error)=>{
 
-}),(error)=>{
-
-}
   }
+}
 
 send(id){
-this.id=id;
+  this.id=id;
   this.booking={};
 }
 // enquiry form
@@ -80,9 +81,9 @@ enquiry(){
 
 //remove search filter on click
 remove(i){
-   if(this.filters.length > 0){
-      this.filters.pop();
-    }
+  if(this.filters.length > 0){
+    this.filters.pop();
+  }
 }
 
 
@@ -90,7 +91,7 @@ remove(i){
  getvenueDetails() {
    this.weddingApiService.getvenueDetails().subscribe((res) =>{
     // this.filters.push(res);
-     this.venue=res;
+    this.venue=res;
      // this.venue=this.filters[Array.length-1];
    },(error:any)=>{
      this.errorMsg = error.statusText;

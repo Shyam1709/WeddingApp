@@ -10,10 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Booking {
 	@Id
 	private String id;
-	@DBRef
-	private User emailId;
-	@DBRef
-	private Venue venueId;
+	private String emailId;
+	private String venueId;
 	private Date date;
 	private Long contactNo;
 
@@ -21,7 +19,7 @@ public class Booking {
 
 	}
 
-	public Booking(Venue venueId, Date date, String id, User emailId, Long contactNo) {
+	public Booking(String venueId, Date date, String id, String emailId, Long contactNo) {
 		this.venueId = venueId;
 		this.date = date;
 		this.emailId = emailId;
@@ -41,19 +39,19 @@ public class Booking {
 		return id;
 	}
 
-	public User getEmailId() {
+	public String getEmailId() {
 		return emailId;
 	}
 
-	public Venue getVenueId() {
+	public String getVenueId() {
 		return venueId;
 	}
 
-	public void setEmmailId(User emailId) {
+	public void setEmmailId(String emailId) {
 		this.emailId = emailId;
 	}
 
-	public void setVenueId(Venue venueId) {
+	public void setVenueId(String venueId) {
 		this.venueId = venueId;
 	}
 

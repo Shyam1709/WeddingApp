@@ -18,17 +18,18 @@ import com.wedding.repository.BookingRepository;
 public class BookingController {
 
 	BookingRepository bookingRepository;
-	
+
 	public BookingController(BookingRepository bookingRepository) {
-		this.bookingRepository=bookingRepository;
+		this.bookingRepository = bookingRepository;
 	}
-	
-	
+
 	// to save userdetails in the database via registration
 	@RequestMapping(value = "/venue", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> add(@RequestBody Booking booking) {
 		Map<String, String> response = new HashMap<String, String>();
-
+		if(booking==null) {
+		response.put("error", "venue not booked");	
+		}
 		bookingRepository.save(booking);
 		response.put("ok", "Venue Booked Succesfuly");
 		return ResponseEntity.accepted().body(response);

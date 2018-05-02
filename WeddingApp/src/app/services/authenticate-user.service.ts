@@ -7,32 +7,35 @@ import { AppConfig }from '../config/config.constant';
 
 @Injectable()
 export class AuthenticateUserService implements CanActivate {
-	private headers:any;
+
 	private token:any;
 	public login : EventEmitter<any> = new EventEmitter();
 	public headerToken;
+  public role;
 
-	constructor(private http:Http,private router: Router) {
+  constructor(private http:Http,private router: Router) {
     if(localStorage.getItem('currentUser')!=null){
-		// this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-    this.headers = new Headers({'Authorization' : this.headerToken});
-    this.login.emit(true);
-  }else{
-    this.login.emit(false);
-  }
+      this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+   // this.headers = new Headers({'Authorization' : JSON.stringify(this.headerToken)});
+
+    
+   this.login.emit(true);
+ }else{
+   this.login.emit(false);
+ }
 }
 
+ private headers= new Headers({ 'Content-Type': 'application/json' });
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
 	return this.http.post(AppConfig.validateuserUrl,loginDetails)
 	.map((response:Response) =>{
 		this.token=response.json().token;
-		if (this.token) {
 
+    if (this.token) {
       // store username and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
-
       // return true to indicate successful login
       if(JSON.parse(localStorage.getItem('currentUser'))['token']){
       	this.login.emit(true);
@@ -53,10 +56,16 @@ loginUser(loginDetails){
 
 // to submit booking details in database
 onSubmit(booking){
-  return this.http.post(AppConfig.sendBookingDetailsUrl,booking,{headers:this.headerToken})
+	 // let headers = new Headers();
+  //  let t=JSON.parse(localStorage.getItem('currentUser'))['token'];
+	 // headers.append('Content-Type', 'application/json; charset=utf-8');
+  //  headers.append('Authorisation',t);
+  //  let options=new RequestOptions({headers:headers});
+  console.log(this.headerToken);
+  return this.http.post(AppConfig.sendBookingDetailsUrl,booking,{headers:this.headers})
   .map(data=>data.json(),
     error=>{
-   this.handleError(error);
+      this.handleError(error);
     })
 }
 
@@ -83,7 +92,7 @@ canActivate(){
 }
 
 getRole(Token){
-	return this.http.get((AppConfig.getRoleUrl),{headers: this.headers})
+	return this.http.get((AppConfig.getRoleUrl))
 	.map((data)=>{
 		data.json();
 	},
@@ -101,9 +110,9 @@ logout() {
 
 
 //Call rest api to register user into user database
+
 register(registerDetails){ 
-	console.log(registerDetails);
-	return this.http.post(AppConfig.saveuserUrl,registerDetails, {headers: this.headers})
+	return this.http.post(AppConfig.saveuserUrl,registerDetails)
 	.map(data =>data.json(),
 		(error:any) =>this.handleError(error));
 }

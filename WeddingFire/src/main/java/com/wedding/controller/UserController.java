@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wedding.model.User;
 import com.wedding.repository.UserRepository;
+import com.wedding.security.JwtAuthenticationProvider;
 import com.wedding.security.JwtGenerator;
 
 @RestController
@@ -58,8 +59,10 @@ public class UserController {
 		if (authenticateUser != null && (authenticateUser.getPassword().contentEquals(user.getPassword()))) {
 			user.setRole(authenticateUser.getRole());
 			user.setUserName(authenticateUser.getUserName());
+			String type= JwtAuthenticationProvider.type;
 			String token = jwtGenerator.generate(user);
 			response.put("token", token);
+			response.put("role", type);
 			return ResponseEntity.ok().body(response);
 		} else {
 			return ResponseEntity.badRequest().build();
