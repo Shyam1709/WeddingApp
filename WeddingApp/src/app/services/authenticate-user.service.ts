@@ -11,26 +11,29 @@ export class AuthenticateUserService implements CanActivate {
 	private token:any;
 	public login : EventEmitter<any> = new EventEmitter();
 	public headerToken;
-  public role;
-
+  public role="user";
+  private headers;
+  private id;
   constructor(private http:Http,private router: Router) {
     if(localStorage.getItem('currentUser')!=null){
       this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-   // this.headers = new Headers({'Authorization' : JSON.stringify(this.headerToken)})
+  // this.headers = new Headers({'Authorization' : this.headerToken})
    this.login.emit(true);
  }else{
    this.login.emit(false);
  }
 }
 
-private headers= new Headers({ 'Content-Type': 'application/json' });
+//private headers= new Headers({ 'Content-Type': 'application/json' });
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
-	return this.http.post(AppConfig.validateuserUrl,loginDetails)
+	return this.http.post(AppConfig.validateuserUrl,loginDetails,{headers:this.headers})
 	.map((response:Response) =>{
 		this.token=response.json().token;
     this.role=response.json().role;
+    this.id=response.json().id;
+    console.log(response + this.role + this.id);
     if (this.token) {
       // store username and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
@@ -69,7 +72,7 @@ onSubmit(booking){
 
 //to check whether user is logged in or not
 isLoggedIn(){
-  if(JSON.parse(localStorage.getItem('currentUser'))['token']){
+  if(JSON.parse(localStorage.getItem('currentUser'))){
     return true;
   }
   else{
@@ -83,13 +86,13 @@ isLoggedIn(){
 // to check if user is logged in
 canActivate(){
   if(!this.isLoggedIn()){
-    this.router.navigate(['login']);
+    this.router.navigate(['/','login']);
     return false;
   }
   if(this.isLoggedIn && this.role=='user'){
    return true;
   }
-  this.router.navigate(['login']);
+  this.router.navigate(['/','login']);
 return false;
 }
 
@@ -104,9 +107,10 @@ getRole(){
 // to logout the user from website
 logout() {
      // clear token remove user from local storage to log user out
+     this.login.emit(false);
      this.token = null;
      localStorage.removeItem('currentUser');
-     this.router.navigate['/login'];
+     this.router.navigate(['/','login']);
    }
 
 

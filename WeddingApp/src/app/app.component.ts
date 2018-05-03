@@ -13,14 +13,15 @@ export class AppComponent {
 	public log : boolean=false;
 	public role;
 	public headerToken: string;
-	constructor(){
-	 if(localStorage.getItem('currentUser')!=null){
+	constructor(private router:Router,private authenticateUserService: AuthenticateUserService){
+	 if(localStorage.getItem('currentUser')!=null && authenticateUserService.role=="user"){
      this.log=true;
+     this.router.navigate['userprofile'];
     // this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-    // this.headers = new Headers({'Authorization' : this.headerToken});
   }
   else{
     this.log=false;
   }
+ 
 }
 }

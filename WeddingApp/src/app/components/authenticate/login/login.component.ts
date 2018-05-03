@@ -11,7 +11,7 @@ import Swal  from 'sweetalert2';
 export class LoginComponent implements OnInit {
 	public errorMsg ='';
 	public showError : boolean = false;
-	public er="";
+	public er:any={};
 	public loginDetails:any={};
   public role:any={};
   constructor(private authenticateUserService : AuthenticateUserService, private router: Router) { }
@@ -24,10 +24,11 @@ login(loginDetails){
   this.authenticateUserService.loginUser(loginDetails).subscribe((res)=>{
     this.router.navigate(['/userProfile']);
   },(error:any)=>{
-    this.er=error.toString();
+    console.log(error);
+    this.er=JSON.parse(error._body);
     Swal({
       title: 'LoginFailed',
-      text: this.er,
+      text: this.er.error,
       showConfirmButton: false,
       type: 'warning',
       timer: 1500

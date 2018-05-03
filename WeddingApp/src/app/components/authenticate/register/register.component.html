@@ -33,7 +33,7 @@
           id="cpwd" name="confirmpassword" (keyup)="check(myInput.value)" #myInput>
           <div><p *ngIf="checkPassword">Password and Confirm password did not match</p></div>
         </fieldset>
-        <button name="submit" type="submit" [class.disabled]="form.invalid"  id="submit" (click)="onSubmit(form)">Submit</button>
+        <button name="submit" class="btn btn-default"  type="submit"  [class.disabled]="form.invalid"  id="submit" (click)="onSubmit(form)">Submit</button>
         <span>Already have an account!&nbsp;<a routerLink="/login">Login Here</a></span>
       </form>
     </div>

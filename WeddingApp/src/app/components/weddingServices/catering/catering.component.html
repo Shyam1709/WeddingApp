@@ -16,7 +16,7 @@
       <input class="form-control mt-5" id="myInput" type="text" placeholder="Search City..">
       <br>
       <ul class="list-group" id="myList">
-         <li><a class="list-group-item" *ngFor="let city of cities" (click)="searchCity(city.name)">{{city.name}}</a></li>
+         <li><a class="list-group-item text-center" *ngFor="let city of cities" (click)="searchCity(city.name)">{{city.name}}</a></li>
       </ul> 
       <ul class="list-group mt-5" id="myList">
         <li class="list-group-item list-group-item-primary">Select by Budget</li>
@@ -28,7 +28,7 @@
     </div>
     <div class="col-md-9 pr-0">
       <div class="container pb-4 mt-5 pr-0">
-          <div class="card" *ngFor="let item of cateringProvider">
+          <div class="card mb-4" *ngFor="let item of cateringProvider">
              <div class="row">
             <div class="col-md-4 pr-0 my-auto mx-auto" >
               <img class="img-fluid my-auto" [attr.src]="imageUrl+item.image_path" alt="{{item.venueName}} image not found">

@@ -51,7 +51,8 @@ public class UserController {
 			return ResponseEntity.badRequest().body(response);
 		}
 		User authenticateUser = userRepository.findOneByEmailId(email);
-
+            System.out.println("user"+ authenticateUser );
+            System.out.print("password" + user.getPassword());
 		if (!authenticateUser.getPassword().contentEquals(user.getPassword())) {
 			response.put("error", "Please enter valid password");
 			return ResponseEntity.badRequest().body(response);
@@ -59,10 +60,11 @@ public class UserController {
 		if (authenticateUser != null && (authenticateUser.getPassword().contentEquals(user.getPassword()))) {
 			user.setRole(authenticateUser.getRole());
 			user.setUserName(authenticateUser.getUserName());
-			String type= JwtAuthenticationProvider.type;
+			String type= authenticateUser.getRole();
 			String token = jwtGenerator.generate(user);
 			response.put("token", token);
 			response.put("role", type);
+			response.put("id", authenticateUser.getUserName());
 			return ResponseEntity.ok().body(response);
 		} else {
 			return ResponseEntity.badRequest().build();

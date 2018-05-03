@@ -19,7 +19,7 @@
           </div>
         </fieldset>
         <fieldset>
-          <input placeholder="Enter your Password" type="password" [(ngModel)]="loginDetails.password" name="password" id="pwd"  minlength="6" maxlength="10"  required  #password='ngModel'>
+          <input placeholder="Enter your Password" type="password" [(ngModel)]="loginDetails.password" name="password" id="pwd"  minlength="6" maxlength="12"  required  #password='ngModel'>
           <div *ngIf="password.invalid" class="text-danger" >
             <div *ngIf="password.errors?.required && password.touched">
               Password is required.
@@ -32,8 +32,8 @@
             </div>
           </div>
         </fieldset>
-        <button name="submit" type="submit"  id="submit" (click)="login(loginDetails)">Submit</button>
-        <span>Don't have an account!&nbsp;<a routerLink="/register">SignUp Here</a></span>
+        <button name="submit" type="submit" id="submit" (click)="login(loginDetails)">Submit</button>
+        <span>Don't have an account!&nbsp;<a routerLink="/register" class="text-primary">SignUp Here</a></span>
       </form>
     </div>
   </div>
