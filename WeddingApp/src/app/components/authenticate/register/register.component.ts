@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit{
   public showError : boolean = false;
   constructor(private authenticateUserService :AuthenticateUserService, private router:Router) { 
   }
+  
   ngOnInit(){
     this.form = new FormGroup({
       userName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)] ), 

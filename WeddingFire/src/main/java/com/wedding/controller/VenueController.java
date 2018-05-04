@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,9 +70,19 @@ public class VenueController {
 	}
 
 	// to search venue by city in mongodb database
-	@RequestMapping(value = "/venue/search/city={city}", method = RequestMethod.GET)
-	public ResponseEntity<List<Venue>> searchbyCity(@PathVariable String city) {
-		return ResponseEntity.ok().body(venueRepository.findByCityLike(city));
+//	@RequestMapping(value = "/venue/search/city={city}", method = RequestMethod.GET)
+//	public ResponseEntity<List<Venue>> searchbyCity(@PathVariable String city) {
+//		return ResponseEntity.ok().body(venueRepository.findByCityLike(city));
+//	}
+	
+	@RequestMapping(value = "/venue/search/city={cities}", method = RequestMethod.GET)
+	public ResponseEntity<List<Venue>> searchbyCity(@PathVariable String cities) {
+	  String city[]=cities.split(",");
+	  List<Venue> selectedCity = new ArrayList<Venue>(); 
+	  for(String param : city) {
+	   selectedCity.addAll(venueRepository.findByCityLike(param));
+	     }
+		return ResponseEntity.ok().body(selectedCity);
 	}
 
 	// to search venue by name in mongodb database
@@ -78,7 +90,7 @@ public class VenueController {
 	public ResponseEntity<List<Venue>> searchbyName(@PathVariable String name) {
 		return ResponseEntity.ok().body(venueRepository.findByVenueNameLike(name));
 	}
-	
+
 	// to search venue by type in mongodb database
 	@RequestMapping(value = "/venue/search/type={type}", method = RequestMethod.GET)
 	public ResponseEntity<List<Venue>> searchbyType(@PathVariable String type) {

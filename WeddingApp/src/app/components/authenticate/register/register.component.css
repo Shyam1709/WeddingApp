@@ -99,7 +99,7 @@ fieldset {
   border: 1px solid #aaa;
 }
 
-button:disabled {
+.disabled {
   cursor: not-allowed !important;
   opacity: 0.5;
 }

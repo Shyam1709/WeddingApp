@@ -1,7 +1,7 @@
  <div class="container">
   <div class="row">
     <div class="col-md-4 col-sm-6 mx-auto">
-      <form class="contact">
+      <form #myForm="ngForm" class="contact" (ngSubmit)="login(loginDetails)">
         <h3>Login</h3>
         <h4>* All fields are Mandatory</h4>
         <fieldset>
@@ -28,11 +28,11 @@
               Password should be of atleast 6 digits.
             </div>
             <div *ngIf="password.errors?.maxlength && password.touched">
-              Password should be of max 10 digits.
+              Password should be of max 12 digits.
             </div>
           </div>
         </fieldset>
-        <button name="submit" type="submit" id="submit" (click)="login(loginDetails)">Submit</button>
+        <button  [disabled]="!myForm.form.valid" [class.disabled]="!myForm.form.valid" name="submit" type="submit" class="btn btn-default" id="submit">Submit</button>
         <span>Don't have an account!&nbsp;<a routerLink="/register" class="text-primary">SignUp Here</a></span>
       </form>
     </div>

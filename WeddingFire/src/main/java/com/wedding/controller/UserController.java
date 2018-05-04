@@ -3,10 +3,8 @@ package com.wedding.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wedding.model.User;
 import com.wedding.repository.UserRepository;
-import com.wedding.security.JwtAuthenticationProvider;
 import com.wedding.security.JwtGenerator;
 
 @RestController
@@ -23,25 +20,24 @@ public class UserController {
 
 	UserRepository userRepository;
 	private JwtGenerator jwtGenerator;
-	
 
 	public UserController(UserRepository userRepository, JwtGenerator jwtGenerator) {
 		this.userRepository = userRepository;
 		this.jwtGenerator = jwtGenerator;
-		
+
 	}
 
 	// to save userdetails in the database via registration
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> add(@RequestBody User user) {
 		Map<String, String> response = new HashMap<String, String>();
-			System.out.print(user);
+		System.out.print(user);
 		userRepository.save(user);
-			response.put("ok", "Registered Succesfuly");
-			return ResponseEntity.accepted().body(response);
+		response.put("ok", "Registered Succesfuly");
+		return ResponseEntity.accepted().body(response);
 
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> generate(@RequestBody User user) {
 		Map<String, String> response = new HashMap<String, String>();
@@ -51,8 +47,6 @@ public class UserController {
 			return ResponseEntity.badRequest().body(response);
 		}
 		User authenticateUser = userRepository.findOneByEmailId(email);
-            System.out.println("user"+ authenticateUser );
-            System.out.print("password" + user.getPassword());
 		if (!authenticateUser.getPassword().contentEquals(user.getPassword())) {
 			response.put("error", "Please enter valid password");
 			return ResponseEntity.badRequest().body(response);
@@ -60,17 +54,16 @@ public class UserController {
 		if (authenticateUser != null && (authenticateUser.getPassword().contentEquals(user.getPassword()))) {
 			user.setRole(authenticateUser.getRole());
 			user.setUserName(authenticateUser.getUserName());
-			String type= authenticateUser.getRole();
+			String type = authenticateUser.getRole();
 			String token = jwtGenerator.generate(user);
 			response.put("token", token);
 			response.put("role", type);
-			response.put("id", authenticateUser.getUserName());
+			response.put("id", email);
+			response.put("name", authenticateUser.getUserName());
 			return ResponseEntity.ok().body(response);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-
-	
 
 }

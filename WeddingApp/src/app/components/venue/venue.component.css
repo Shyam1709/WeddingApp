@@ -1,9 +1,18 @@
 /*to add scroll bar in menu list*/
-ul{
+.set-ul{
  overflow-y: auto; 
  height: 250px;
 }
 
+/*to apply css for filter*/
+.set-filter{
+list-style-type: none;
+display: inline;
+font-size: 18px;
+}
+.set-filterli{
+  display: inline;
+}
 /*to align list items in center*/
 #myList{
   text-align: center;
@@ -12,14 +21,10 @@ ul{
 a{
   cursor: pointer;
 }
-
-
-
-
 /* css for extra small devices*/
 @media (max-width: 576px){
 
-  ul{
+  .set-ul{
     font-size: 10px;
     padding: 10px;
   }
@@ -64,7 +69,7 @@ a{
 
 /* css for small devices*/
 @media (min-width: 576px) and (max-width: 768px){
-  ul{
+  .set-ul{
     font-size: 10px;
   }
 
@@ -104,7 +109,7 @@ a{
 
 /* css for medium devices*/
 @media (min-width: 768px) and (max-width: 991px){
- ul{
+ .set-ul{
   font-size: 12px;
   padding:0px;
   margin: 0px;
@@ -149,7 +154,7 @@ h6{
 
 /* css for large devices */
 @media (min-width: 992px) and (max-width: 1500px) {
-  ul{
+  .set-ul{
     text-align: center;
   }
   .card{

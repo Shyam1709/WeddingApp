@@ -11,8 +11,9 @@ export class AuthenticateUserService implements CanActivate {
 	private token:any;
 	public login : EventEmitter<any> = new EventEmitter();
 	public headerToken;
-  public role="user";
-  private headers;
+  public role="admin";
+  public name;
+// private headers;
   private id;
   constructor(private http:Http,private router: Router) {
     if(localStorage.getItem('currentUser')!=null){
@@ -23,8 +24,7 @@ export class AuthenticateUserService implements CanActivate {
    this.login.emit(false);
  }
 }
-
-//private headers= new Headers({ 'Content-Type': 'application/json' });
+private headers= new Headers({ 'Content-Type': 'application/json' });
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
@@ -32,11 +32,11 @@ loginUser(loginDetails){
 	.map((response:Response) =>{
 		this.token=response.json().token;
     this.role=response.json().role;
+    this.name=response.json().name;
     this.id=response.json().id;
-    console.log(response + this.role + this.id);
     if (this.token) {
       // store username and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
+      localStorage.setItem('currentUser', JSON.stringify({ token: this.token, userName: this.name, emailId: this.id}));
       // return true to indicate successful login
       if(JSON.parse(localStorage.getItem('currentUser'))['token']){
       	this.login.emit(true);
@@ -90,6 +90,10 @@ canActivate(){
     return false;
   }
   if(this.isLoggedIn && this.role=='user'){
+   return true;
+  }
+   if(this.isLoggedIn && this.role=='admin'){
+     this.router.navigate(['/','dashboard']);
    return true;
   }
   this.router.navigate(['/','login']);

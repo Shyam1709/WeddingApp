@@ -14,14 +14,16 @@ export class AppComponent {
 	public role;
 	public headerToken: string;
 	constructor(private router:Router,private authenticateUserService: AuthenticateUserService){
-	 if(localStorage.getItem('currentUser')!=null && authenticateUserService.role=="user"){
-     this.log=true;
-     this.router.navigate['userprofile'];
+		if(localStorage.getItem('currentUser')!=null && authenticateUserService.role=="user"){
+			this.log=true; 
+			this.router.navigate['/userprofile'];
     // this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
   }
-  else{
-    this.log=false;
+  else if(localStorage.getItem('currentUser')!=null && authenticateUserService.role=="admin"){
+  	this.router.navigate(['/dashboard']);
+  }else{
+  	this.log=false;
   }
- 
+
 }
 }

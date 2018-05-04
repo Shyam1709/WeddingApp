@@ -14,7 +14,7 @@ constructor(public authenticateUserService: AuthenticateUserService, public rout
     state: RouterStateSnapshot) {
       const expectedRole = route.data.expectedRole;
       if (!this.authenticateUserService.isLoggedIn() || this.authenticateUserService.role !== expectedRole) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
       return false;
     }
     return true;

@@ -1,5 +1,5 @@
   <div class="container"> 
-    <form class="col-md-6 mx-auto">
+    <form class="col-md-6 mx-auto mb-4">
       <div class="input-group mt-5">
         <input type="text" id="venueTitle" class="form-control"  placeholder="Search venue..." name="venueTitle" #name>
         <span class="input-group-btn">
@@ -7,21 +7,19 @@
         </span>
       </div>
     </form>
-    <div>
-      <ul>
-       <li *ngFor= "let filter of filters; let i= index" >
-        <h4><span class="badge badge-secondary">{{filter.city}}</span><a (click)="remove(i)"><i class="fa fa-window-close" aria-hidden="true"></i></a></h4>
-      </li> 
+    <ul class="set-filter inline-list">
+       <li *ngFor= "let filter of filters; let i= index" class="set-filterli">
+        <span class="badge badge-secondary">{{filter}} <a (click)="remove(i)"><i class="fa fa-window-close" aria-hidden="true"></i></a></span>
+      </li>
     </ul>
-  </div>
   <div class="row mt-3">
     <div class="col-md-2 col-sm-3 list-set">
       <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City.."  #city (keyup.enter)="searchCity(city.value)">
       <br>
-      <ul class="list-group text-center" id="myList">
+      <ul class="list-group text-center set-ul" id="myList">
         <li><a class="list-group-item" *ngFor="let city of cities" (click)="searchCity(city.name)">{{city.name}}</a></li>
       </ul> 
-      <ul class="list-group mt-5 text-center" id="typeList">
+      <ul class="list-group mt-5 text-center set-ul" id="typeList">
         <li class="list-group-item list-group-item-primary">Select by Type</li>
         <a class="list-group-item" *ngFor="let venuetype of Venuetypes" (click)="searchVenueType(venuetype.name)">{{venuetype.name}}</a>
       </ul>   

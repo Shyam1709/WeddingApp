@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateUserService } from '../../../services/authenticate-user.service';
 import { Router } from "@angular/router";
+import {FormsModule} from '@angular/forms';
 import Swal  from 'sweetalert2';
 
 @Component({

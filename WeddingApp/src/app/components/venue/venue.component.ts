@@ -30,21 +30,28 @@ export class VenueComponent implements OnInit {
     this.getvenueDetails();
   }
 
+
 //to search venue by name
 search(name){
   this.weddingApiService.searchByName(name).subscribe((res)=>{
     this.venue=res;
   },(error:any)=>{
+    this.errorMsg = error.statusText;
+    this.showerror = true;
   })
 }
 
 //to search venue by city
 searchCity(city){
-  this.weddingApiService.searchByCity(city).subscribe((res)=>{
+  if(this.filters.includes(city)){
+  return false;
+  }
+  this.filters.push(city);
+  this.weddingApiService.searchByCity(this.filters).subscribe((res)=>{
     this.venue=res;
-    this.filters.push(res);
   },(error:any)=>{
-    console.log(error);
+    this.errorMsg = error.statusText;
+    this.showerror = true;
   })
 }
 
@@ -55,18 +62,19 @@ searchVenueType(venuetype){
     this.filters.push(res);
 
   },(error:any)=>{
-    
+    this.errorMsg = error.statusText;
+    this.showerror = true;
   })
 }
 
 //sending booking details on backend
 onSubmit(booking) {
   booking.id=this.id;
-  console.log(booking);
   this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
     console.log(res);
   }),(error)=>{
-
+    this.errorMsg = error.statusText;
+    this.showerror = true;
   }
 }
 
@@ -82,10 +90,17 @@ enquiry(){
 //remove search filter on click
 remove(i){
   if(this.filters.length > 0){
-    this.filters.pop();
+    this.filters.splice(i,1);
+    console.log(this.filters);
+    this.weddingApiService.searchByCity(this.filters).subscribe((res)=>{
+      this.venue=res; 
+    }),(error)=>{
+      this.errorMsg = error.statusText;
+      this.showerror = true;
+    }
   }
-}
 
+}
 
  // get data of venue details from database
  getvenueDetails() {
