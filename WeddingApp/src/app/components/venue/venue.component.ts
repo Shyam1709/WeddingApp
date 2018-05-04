@@ -69,9 +69,10 @@ searchVenueType(venuetype){
 
 //sending booking details on backend
 onSubmit(booking) {
-  booking.id=this.id;
+  booking.venueId=this.id;
+  booking.userId= JSON.parse(localStorage.getItem('currentUser'))['emailId'];
   this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
-    console.log(res);
+    console.log(booking);
   }),(error)=>{
     this.errorMsg = error.statusText;
     this.showerror = true;
@@ -82,10 +83,7 @@ send(id){
   this.id=id;
   this.booking={};
 }
-// enquiry form
-enquiry(){
 
-}
 
 //remove search filter on click
 remove(i){

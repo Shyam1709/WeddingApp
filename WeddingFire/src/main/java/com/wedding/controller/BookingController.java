@@ -11,27 +11,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wedding.model.Booking;
+import com.wedding.model.Venue;
 import com.wedding.repository.BookingRepository;
+import com.wedding.repository.VenueRepository;
 
 @RestController
-@RequestMapping("/rest/booking")
+@RequestMapping("/wedding/booking")
 public class BookingController {
 
 	BookingRepository bookingRepository;
+	VenueRepository venueRepository;
 
-	public BookingController(BookingRepository bookingRepository) {
+	public BookingController(BookingRepository bookingRepository, VenueRepository venueRepository) {
 		this.bookingRepository = bookingRepository;
+		this.venueRepository = venueRepository;
 	}
 
-	// to save userdetails in the database via registration
+	// to save userdetails in the database via booking form
 	@RequestMapping(value = "/venue", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> add(@RequestBody Booking booking) {
 		Map<String, String> response = new HashMap<String, String>();
-		if(booking==null) {
-		response.put("error", "venue not booked");	
+		if (booking == null) {
+			response.put("error", "venue not booked");
 		}
 		bookingRepository.save(booking);
-		response.put("ok", "Venue Booked Succesfuly");
+		Venue v = venueRepository.findById(booking.getVenueId());
+		response.put("venueName", v.getVenueName());
+		response.put("venuePrice", String.valueOf(v.getPrice()));
+		response.put("location", v.getLocation());
+		response.put("bookingDate",String.valueOf(booking.getDate()));
+	
 		return ResponseEntity.accepted().body(response);
 	}
+
+	
 }

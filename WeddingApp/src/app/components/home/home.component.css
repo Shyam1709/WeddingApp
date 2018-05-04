@@ -1,4 +1,4 @@
-.size{
+.set-size{
   height: 420px;
 }
 
@@ -11,3 +11,22 @@
   opacity: 0.9;
 }
 
+/* css for extra small devices*/
+@media (max-width: 576px){
+h1,h2{
+  font-size: 20px;
+}
+.set-gallery{
+  width: 300px;
+  margin: auto;
+
+}
+/* to set size of carousel*/
+.set-size{
+height: 200px;
+}
+.venue-fit{
+  height:200px;
+}
+
+}

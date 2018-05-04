@@ -11,18 +11,18 @@ export class AuthenticateUserService implements CanActivate {
 	private token:any;
 	public login : EventEmitter<any> = new EventEmitter();
 	public headerToken;
-  public role="admin";
+  public role="user";
   public name;
 // private headers;
-  private id;
-  constructor(private http:Http,private router: Router) {
-    if(localStorage.getItem('currentUser')!=null){
-      this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+public id;
+constructor(private http:Http,private router: Router) {
+  if(localStorage.getItem('currentUser')!=null){
+    this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
   // this.headers = new Headers({'Authorization' : this.headerToken})
-   this.login.emit(true);
- }else{
-   this.login.emit(false);
- }
+  this.login.emit(true);
+}else{
+  this.login.emit(false);
+}
 }
 private headers= new Headers({ 'Content-Type': 'application/json' });
 
@@ -90,14 +90,14 @@ canActivate(){
     return false;
   }
   if(this.isLoggedIn && this.role=='user'){
-   return true;
+    return true;
   }
-   if(this.isLoggedIn && this.role=='admin'){
-     this.router.navigate(['/','dashboard']);
-   return true;
+  if(this.isLoggedIn && this.role=='admin'){
+    this.router.navigate(['/','dashboard']);
+    return true;
   }
   this.router.navigate(['/','login']);
-return false;
+  return false;
 }
 
 getRole(){

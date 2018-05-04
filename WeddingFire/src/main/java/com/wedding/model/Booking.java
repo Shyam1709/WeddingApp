@@ -14,12 +14,12 @@ public class Booking {
 	private String venueId;
 	private Date date;
 	private Long contactNo;
-
+    private String userId;
 	public Booking() {
 
 	}
 
-	public Booking(String venueId, Date date, String id, String emailId, Long contactNo) {
+	public Booking(String venueId,String userId, Date date, String id, String emailId, Long contactNo) {
 		this.venueId = venueId;
 		this.date = date;
 		this.emailId = emailId;
@@ -63,4 +63,11 @@ public class Booking {
 		this.contactNo = contactNo;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }
