@@ -7,10 +7,11 @@ import { AuthenticateUserService } from '../../services/authenticate-user.servic
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+    public errorMsg="";
+  public showerror : boolean = false;
 
   constructor(private authenticateUserService: AuthenticateUserService) {
  this.authenticateUserService.getuserDetails().subscribe((res)=>{
-    console.log(booking);
   }),(error)=>{
     this.errorMsg = error.statusText;
     this.showerror = true;

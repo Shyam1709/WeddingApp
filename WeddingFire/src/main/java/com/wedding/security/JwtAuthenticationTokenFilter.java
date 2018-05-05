@@ -1,6 +1,5 @@
 package com.wedding.security;
 
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -15,30 +14,31 @@ import java.io.IOException;
 
 public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilter {
 
-    public JwtAuthenticationTokenFilter() {
-        super("/rest/**");
-    }
+	public JwtAuthenticationTokenFilter() {
+		super("/auth/**");
+	}
 
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
+	@Override
+	public Authentication attemptAuthentication(HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
 
-        String header = httpServletRequest.getHeader("Authorization");
+		String header = httpServletRequest.getHeader("Authorization");
 
-        if (header == null) {
-            throw new RuntimeException("JWT Token is missing");
-           
-        }
+		if (header == null) {
+			throw new RuntimeException("JWT Token is missing");
 
-        String authenticationToken = header.substring(0);
+		}
 
-        JwtAuthenticationToken token = new JwtAuthenticationToken(authenticationToken);
-        return getAuthenticationManager().authenticate(token);
-    }
+		String authenticationToken = header.substring(0);
 
+		JwtAuthenticationToken token = new JwtAuthenticationToken(authenticationToken);
+		return getAuthenticationManager().authenticate(token);
+	}
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        super.successfulAuthentication(request, response, chain, authResult);
-        chain.doFilter(request, response);
-    }
+	@Override
+	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+			Authentication authResult) throws IOException, ServletException {
+		super.successfulAuthentication(request, response, chain, authResult);
+		chain.doFilter(request, response);
+	}
 }

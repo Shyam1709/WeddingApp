@@ -8,10 +8,10 @@
       </div>
     </form>
     <ul class="set-filter inline-list">
-       <li *ngFor= "let filter of filters; let i= index" class="set-filterli">
-        <span class="badge badge-secondary">{{filter}} <a (click)="remove(i)"><i class="fa fa-window-close" aria-hidden="true"></i></a></span>
-      </li>
-    </ul>
+     <li *ngFor= "let filter of filters; let i= index" class="set-filterli">
+      <span class="badge badge-secondary">{{filter}} <a (click)="remove(i)"><i class="fa fa-window-close" aria-hidden="true"></i></a></span>
+    </li>
+  </ul>
   <div class="row mt-3">
     <div class="col-md-2 col-sm-3 list-set">
       <input class="form-control mt-5 guest" id="myInput" type="text" placeholder="Search City.."  #city (keyup.enter)="searchCity(city.value)">
@@ -58,9 +58,9 @@
         </div>
         <div class="modal-body">
          <form> 
-          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name" >
-          <input class="form-control mb-3" type="text" name="emailId" placeholder="Enter your EmailId">
-          <input class="form-control mb-3" type="text" name="contactNo" placeholder="Enter your contactNo">
+          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name" [(ngModel)]="enquiry.name">
+          <input class="form-control mb-3" type="text" name="emailId" placeholder="Enter your EmailId" [(ngModel)]="enquiry.emailId">
+          <input class="form-control mb-3" type="text" name="contactNo" placeholder="Enter your contactNo" [(ngModel)]="enquiry.contactNo">
         </form>
       </div>
       <div class="modal-footer">
@@ -85,16 +85,32 @@
       <div class="modal-body">
        <form > 
         <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name">
-        <input class="form-control mb-3" [(ngModel)]="booking.emailId" type="email" name="emailId" placeholder="Enter your EmailId" #emailId='ngModel'>
-        <input class="form-control mb-3" [(ngModel)]="booking.contactNo" type="phone" name="contactNo" placeholder="Enter your contactNo" #contactNo='ngModel'>
+        <input class="form-control mb-3" [(ngModel)]="booking.emailId" type="email" name="emailId" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Enter your EmailId" #emailId='ngModel'>
+        <div *ngIf="emailId.invalid" class="text-danger" >
+          <div *ngIf="emailId.errors?.required && emailId.touched">
+            EmailId is required
+          </div>
+          <div *ngIf="emailId.errors?.pattern && emailId.touched">
+            Please Enter valid EmailId
+          </div>
+        </div>
+        <input class="form-control mb-3" [(ngModel)]="booking.contactNo" type="phone" name="contactNo" required pattern="^[2-9]{1}[0-9]{9}$" placeholder="Enter your contactNo" #contactNo='ngModel'>
+        <div *ngIf="contactNo.invalid" class="text-danger" >
+          <div *ngIf="contactNo.errors?.required && contactNo.touched">
+            ContactNo is required
+          </div>
+          <div *ngIf="contactNo.errors?.pattern && contactNo.touched">
+            Please Enter valid ContactNumber
+          </div>
+        </div>
         <input class="form-control mb-3" [(ngModel)]="booking.date" type="date" name="date" #date='ngModel'>
       </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary" (click)="onSubmit(booking)">Book Now</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit(booking)">Book Now</button>
     </div>
-  </div>
+  </div>data-dismiss="modal" 
 </div>
 </div> 
 <!-- Modal ends here -->

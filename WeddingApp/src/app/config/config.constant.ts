@@ -46,5 +46,5 @@ export class AppConfig{
  public static searchcateringByPriceUrl="http://localhost:8095/catering/cateringProviders/search/price="; 
 
 // to send booking details in database
-public static sendBookingDetailsUrl="http://localhost:8095/wedding/booking/venue";
+public static sendBookingDetailsUrl="http://localhost:8095/wed/booking/venue";
 }

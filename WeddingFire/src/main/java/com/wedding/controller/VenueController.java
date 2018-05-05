@@ -70,18 +70,13 @@ public class VenueController {
 	}
 
 	// to search venue by city in mongodb database
-//	@RequestMapping(value = "/venue/search/city={city}", method = RequestMethod.GET)
-//	public ResponseEntity<List<Venue>> searchbyCity(@PathVariable String city) {
-//		return ResponseEntity.ok().body(venueRepository.findByCityLike(city));
-//	}
-	
 	@RequestMapping(value = "/venue/search/city={cities}", method = RequestMethod.GET)
 	public ResponseEntity<List<Venue>> searchbyCity(@PathVariable String cities) {
-	  String city[]=cities.split(",");
-	  List<Venue> selectedCity = new ArrayList<Venue>(); 
-	  for(String param : city) {
-	   selectedCity.addAll(venueRepository.findByCityLike(param));
-	     }
+		String city[] = cities.split(",");
+		List<Venue> selectedCity = new ArrayList<Venue>();
+		for (String param : city) {
+			selectedCity.addAll(venueRepository.findByCityLike(param));
+		}
 		return ResponseEntity.ok().body(selectedCity);
 	}
 
@@ -92,9 +87,14 @@ public class VenueController {
 	}
 
 	// to search venue by type in mongodb database
-	@RequestMapping(value = "/venue/search/type={type}", method = RequestMethod.GET)
-	public ResponseEntity<List<Venue>> searchbyType(@PathVariable String type) {
-		return ResponseEntity.ok().body(venueRepository.findByTypeLike(type));
+	@RequestMapping(value = "/venue/search/type={types}", method = RequestMethod.GET)
+	public ResponseEntity<List<Venue>> searchbyType(@PathVariable String types) {
+		String type[] = types.split(",");
+		List<Venue> selectedtype = new ArrayList<Venue>();
+		for (String param : type) {
+			selectedtype.addAll(venueRepository.findByTypeLike(param));
+		}
+		return ResponseEntity.ok().body(selectedtype);
 	}
 
 	// to get venue images from mongodb database

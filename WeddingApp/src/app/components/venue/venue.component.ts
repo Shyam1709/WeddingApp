@@ -14,6 +14,7 @@ import { TYPE } from '../shared/List/type';
 })
 export class VenueComponent implements OnInit {
   public venue: any=[];
+  public enquiry: any={};
   public imageUrl=AppConfig.getimageUrl;
   public errorMsg="";
   public showerror : boolean = false;
@@ -44,7 +45,7 @@ search(name){
 //to search venue by city
 searchCity(city){
   if(this.filters.includes(city)){
-  return false;
+    return false;
   }
   this.filters.push(city);
   this.weddingApiService.searchByCity(this.filters).subscribe((res)=>{
@@ -57,7 +58,11 @@ searchCity(city){
 
 //to search venue by type
 searchVenueType(venuetype){
-  this.weddingApiService.searchByType(venuetype).subscribe((res)=>{
+  if(this.filters.includes(venuetype)){
+    return false;
+  }
+  this.filters.push(venuetype);
+  this.weddingApiService.searchByType(this.filters).subscribe((res)=>{
     this.venue=res;
     this.filters.push(res);
 
@@ -103,9 +108,7 @@ remove(i){
  // get data of venue details from database
  getvenueDetails() {
    this.weddingApiService.getvenueDetails().subscribe((res) =>{
-    // this.filters.push(res);
-    this.venue=res;
-     // this.venue=this.filters[Array.length-1];
+     this.venue=res;
    },(error:any)=>{
      this.errorMsg = error.statusText;
      this.showerror = true;

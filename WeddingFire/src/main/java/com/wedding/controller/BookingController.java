@@ -16,7 +16,7 @@ import com.wedding.repository.BookingRepository;
 import com.wedding.repository.VenueRepository;
 
 @RestController
-@RequestMapping("/wedding/booking")
+@RequestMapping("/wed/booking")
 public class BookingController {
 
 	BookingRepository bookingRepository;
@@ -35,12 +35,12 @@ public class BookingController {
 			response.put("error", "venue not booked");
 		}
 		bookingRepository.save(booking);
-		Venue v = venueRepository.findById(booking.getVenueId());
-		response.put("venueName", v.getVenueName());
-		response.put("venuePrice", String.valueOf(v.getPrice()));
-		response.put("location", v.getLocation());
-		response.put("bookingDate",String.valueOf(booking.getDate()));
-	
+//		Venue v = venueRepository.findById(booking.getVenueId());
+//		response.put("venueName", v.getVenueName());
+//		response.put("venuePrice", String.valueOf(v.getPrice()));
+//		response.put("location", v.getLocation());
+//		response.put("bookingDate",String.valueOf(booking.getDate()));
+	response.put("ok", "venue booked successfully");
 		return ResponseEntity.accepted().body(response);
 	}
 

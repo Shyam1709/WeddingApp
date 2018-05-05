@@ -13,18 +13,18 @@ export class AuthenticateUserService implements CanActivate {
 	public headerToken;
   public role="user";
   public name;
-// private headers;
+ private headers;
 public id;
 constructor(private http:Http,private router: Router) {
   if(localStorage.getItem('currentUser')!=null){
     this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-  // this.headers = new Headers({'Authorization' : this.headerToken})
+   this.headers = new Headers({'Authorization' : this.headerToken})
   this.login.emit(true);
 }else{
   this.login.emit(false);
 }
 }
-private headers= new Headers({ 'Content-Type': 'application/json' });
+//private headers= new Headers({ 'Content-Type': 'application/json' });
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
@@ -54,6 +54,9 @@ loginUser(loginDetails){
   	this.handleError(error)
   });
 }
+
+//get user details from database on 
+
 
 // to submit booking details in database
 onSubmit(booking){
