@@ -23,6 +23,7 @@ export class VenueComponent implements OnInit {
   public filters=[];
   public booking:any={};
   public id:any;
+  private searchContent: any;
   constructor(private weddingApiService: WeddingApiService, private authenticateUserService:AuthenticateUserService) { 
     this.cities=CITY;
     this.Venuetypes=TYPE;
@@ -64,7 +65,6 @@ searchVenueType(venuetype){
   this.filters.push(venuetype);
   this.weddingApiService.searchByType(this.filters).subscribe((res)=>{
     this.venue=res;
-    this.filters.push(res);
 
   },(error:any)=>{
     this.errorMsg = error.statusText;
@@ -78,10 +78,10 @@ onSubmit(booking) {
   booking.userId= JSON.parse(localStorage.getItem('currentUser'))['emailId'];
   this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
     console.log(booking);
-  }),(error)=>{
+  },(error)=>{
     this.errorMsg = error.statusText;
     this.showerror = true;
-  }
+  })
 }
 
 send(id){
@@ -92,10 +92,24 @@ send(id){
 
 //remove search filter on click
 remove(i){
+
   if(this.filters.length > 0){
+      this.searchContent=this.filters[i-1];
+      console.log(this.searchContent);
     this.filters.splice(i,1);
-    console.log(this.filters);
+  }
+
+if(this.cities.includes(this.searchContent)){
     this.weddingApiService.searchByCity(this.filters).subscribe((res)=>{
+      this.venue=res; 
+    }),(error)=>{
+      this.errorMsg = error.statusText;
+      this.showerror = true;
+    }
+  }
+
+  if(this.Venuetypes.includes(this.searchContent)){
+    this.weddingApiService.searchByType(this.filters).subscribe((res)=>{
       this.venue=res; 
     }),(error)=>{
       this.errorMsg = error.statusText;

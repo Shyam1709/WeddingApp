@@ -9,16 +9,17 @@ import { AuthenticateUserService } from '../../services/authenticate-user.servic
 export class UserProfileComponent implements OnInit {
     public errorMsg="";
   public showerror : boolean = false;
-
+  private userid;
   constructor(private authenticateUserService: AuthenticateUserService) {
- this.authenticateUserService.getuserDetails().subscribe((res)=>{
-  }),(error)=>{
-    this.errorMsg = error.statusText;
-    this.showerror = true;
-  }
    }
 
   ngOnInit() {
+        this.userid=JSON.parse(localStorage.getItem('currentUser'))['emailId'];
+ this.authenticateUserService.getuserDetails(this.userid).subscribe((res)=>{
+  },(error)=>{
+    this.errorMsg = error.statusText;
+    this.showerror = true;
+  })
   }
 
 }

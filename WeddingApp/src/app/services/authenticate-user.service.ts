@@ -18,13 +18,14 @@ public id;
 constructor(private http:Http,private router: Router) {
   if(localStorage.getItem('currentUser')!=null){
     this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
-   this.headers = new Headers({'Authorization' : this.headerToken})
+   //this.headers = new Headers({'Authorization' : this.headerToken})
   this.login.emit(true);
 }else{
   this.login.emit(false);
 }
+this.headers= new Headers({ 'Content-Type': 'application/json' });
 }
-//private headers= new Headers({ 'Content-Type': 'application/json' });
+
 
 //Call rest api to login user into user database using token authentication
 loginUser(loginDetails){ 
@@ -83,6 +84,17 @@ isLoggedIn(){
   }
 }
 
+
+//get booking details from database
+getuserDetails(userid){
+  return this.http.get(AppConfig.getBookingDetailsUrl+userid,{headers:this.headers})
+   .map((data)=>{data.json();
+    console.log(data);
+  },
+    error=>{
+      this.handleError(error);
+    })
+}
 
 
 

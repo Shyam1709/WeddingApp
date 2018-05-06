@@ -47,7 +47,7 @@ public class Booking {
 		return venueId;
 	}
 
-	public void setEmmailId(String emailId) {
+	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
 

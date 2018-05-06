@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,14 +36,21 @@ public class BookingController {
 			response.put("error", "venue not booked");
 		}
 		bookingRepository.save(booking);
-//		Venue v = venueRepository.findById(booking.getVenueId());
-//		response.put("venueName", v.getVenueName());
-//		response.put("venuePrice", String.valueOf(v.getPrice()));
-//		response.put("location", v.getLocation());
-//		response.put("bookingDate",String.valueOf(booking.getDate()));
-	response.put("ok", "venue booked successfully");
+		// Venue v = venueRepository.findById(booking.getVenueId());
+		// response.put("venueName", v.getVenueName());
+		// response.put("venuePrice", String.valueOf(v.getPrice()));
+		// response.put("location", v.getLocation());
+		// response.put("bookingDate",String.valueOf(booking.getDate()));
+		response.put("ok", "venue booked successfully");
 		return ResponseEntity.accepted().body(response);
 	}
 
-	
+	// to get booking details from database
+	@RequestMapping(value = "/bookingdetails/{userid}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, String>> getDetails(@PathVariable String userid) {
+       Booking b =bookingRepository.findAllByUserId(userid); 
+		return null;
+
+	}
+
 }

@@ -47,4 +47,7 @@ export class AppConfig{
 
 // to send booking details in database
 public static sendBookingDetailsUrl="http://localhost:8095/wed/booking/venue";
+
+// to get booking details from database
+public static getBookingDetailsUrl="http://localhost:8095/wed/booking/bookingdetails/";
 }
