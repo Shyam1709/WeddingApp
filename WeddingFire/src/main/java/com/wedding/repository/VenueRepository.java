@@ -9,5 +9,5 @@ public interface VenueRepository extends MongoRepository<Venue,String>{
 public List<Venue> findByVenueNameLike(String name);
 public List<Venue> findByCityLike(String city);
 public List<Venue> findByTypeLike(String Type);
-public Venue findById(String id);
+public List<Venue> findOneById(String id);
 }

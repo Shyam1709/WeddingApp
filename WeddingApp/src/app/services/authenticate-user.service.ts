@@ -13,17 +13,17 @@ export class AuthenticateUserService implements CanActivate {
 	public headerToken;
   public role="user";
   public name;
- private headers;
-public id;
-constructor(private http:Http,private router: Router) {
-  if(localStorage.getItem('currentUser')!=null){
-    this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
+  private headers;
+  public id;
+  constructor(private http:Http,private router: Router) {
+    if(localStorage.getItem('currentUser')!=null){
+      this.headerToken = JSON.parse(localStorage.getItem('currentUser'))['token'];
    //this.headers = new Headers({'Authorization' : this.headerToken})
-  this.login.emit(true);
-}else{
-  this.login.emit(false);
-}
-this.headers= new Headers({ 'Content-Type': 'application/json' });
+   this.login.emit(true);
+ }else{
+   this.login.emit(false);
+ }
+ this.headers= new Headers({ 'Content-Type': 'application/json' });
 }
 
 
@@ -88,12 +88,12 @@ isLoggedIn(){
 //get booking details from database
 getuserDetails(userid){
   return this.http.get(AppConfig.getBookingDetailsUrl+userid,{headers:this.headers})
-   .map((data)=>{data.json();
+  .map((data)=>{data.json();
     console.log(data);
   },
-    error=>{
-      this.handleError(error);
-    })
+  error=>{
+    this.handleError(error);
+  })
 }
 
 

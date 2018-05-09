@@ -1,6 +1,7 @@
 package com.wedding.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -13,18 +14,34 @@ public class Booking {
 	private String emailId;
 	private String venueId;
 	private Date date;
+	@DBRef
+	private List<Venue> venuedetails;
+	public List<Venue> getVenuedetails() {
+		return venuedetails;
+	}
+
+	public void setVenuedetails(List<Venue> venuedetails) {
+		this.venuedetails = venuedetails;
+	}
+
 	private Long contactNo;
     private String userId;
 	public Booking() {
 
 	}
 
-	public Booking(String venueId,String userId, Date date, String id, String emailId, Long contactNo) {
+
+
+	public Booking(String id, String emailId, String venueId, Date date, List<Venue> venuedetails, Long contactNo,
+			String userId) {
+		super();
+		this.id = id;
+		this.emailId = emailId;
 		this.venueId = venueId;
 		this.date = date;
-		this.emailId = emailId;
+		this.venuedetails = venuedetails;
 		this.contactNo = contactNo;
-
+		this.userId = userId;
 	}
 
 	public Date getDate() {
@@ -38,6 +55,8 @@ public class Booking {
 	public String getId() {
 		return id;
 	}
+
+	
 
 	public String getEmailId() {
 		return emailId;

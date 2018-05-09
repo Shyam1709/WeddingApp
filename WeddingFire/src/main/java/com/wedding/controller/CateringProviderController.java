@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wedding.model.CateringProvider;
-import com.wedding.model.Venue;
 import com.wedding.repository.CateringProviderRepository;
 
 @RestController
