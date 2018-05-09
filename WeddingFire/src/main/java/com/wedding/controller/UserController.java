@@ -38,6 +38,7 @@ public class UserController {
 
 	}
 
+	// to authenticate the user via login
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, String>> generate(@RequestBody User user) {
 		Map<String, String> response = new HashMap<String, String>();
