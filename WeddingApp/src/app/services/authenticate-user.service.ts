@@ -37,7 +37,7 @@ loginUser(loginDetails){
     this.id=response.json().id;
     if (this.token) {
       // store username and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('currentUser', JSON.stringify({ token: this.token, userName: this.name, emailId: this.id}));
+      localStorage.setItem('currentUser', JSON.stringify({ token: this.token, userName: this.name, Id: this.id}));
       // return true to indicate successful login
       if(JSON.parse(localStorage.getItem('currentUser'))['token']){
       	this.login.emit(true);
@@ -84,12 +84,11 @@ isLoggedIn(){
   }
 }
 
-
 //get booking details from database
 getuserDetails(userid){
   return this.http.get(AppConfig.getBookingDetailsUrl+userid,{headers:this.headers})
-  .map((data)=>{data.json();
-    console.log(data);
+  .map((data)=>{
+   return data.json();
   },
   error=>{
     this.handleError(error);

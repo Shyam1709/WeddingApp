@@ -56,10 +56,11 @@ public class UserController {
 			user.setRole(authenticateUser.getRole());
 			user.setUserName(authenticateUser.getUserName());
 			String type = authenticateUser.getRole();
+			String id = authenticateUser.getId();
 			String token = jwtGenerator.generate(user);
 			response.put("token", token);
 			response.put("role", type);
-			response.put("id", email);
+			response.put("id", id);
 			response.put("name", authenticateUser.getUserName());
 			return ResponseEntity.ok().body(response);
 		} else {

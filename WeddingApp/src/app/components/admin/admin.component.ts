@@ -41,7 +41,7 @@ onSubmit(updateData) {
   updateData.venue_image=this.selectedFile.name;
   this.weddingApiService.updateDetails(this.updateData).subscribe(data=>{
         Swal({
-      title: 'Catering Details',
+      title: 'Venue Details',
       text: 'Successfully Added',
       showConfirmButton: false,
       type: 'success',

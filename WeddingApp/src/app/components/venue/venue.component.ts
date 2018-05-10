@@ -5,6 +5,10 @@ import {AuthenticateUserService } from '../../services/authenticate-user.service
 import { AppConfig } from '../../config/config.constant';
 import { CITY } from '../shared/List/citylist';
 import { TYPE } from '../shared/List/type';
+import { NgForm } from '@angular/forms';
+
+import  Swal  from 'sweetalert2';
+
 
 @Component({
   selector: 'app-venue',
@@ -46,7 +50,13 @@ search(name){
 //to search venue by city
 searchCity(city){
   if(this.filters.includes(city)){
-    return false;
+    Swal({
+      text: "City already selected",
+      showConfirmButton: false,
+      type: 'warning',
+      timer:1500,
+    }) 
+    return;
   }
   this.filters.push(city);
   this.weddingApiService.searchByCity(this.filters).subscribe((res)=>{
@@ -57,26 +67,27 @@ searchCity(city){
   })
 }
 
-//to search venue by type
-searchVenueType(venuetype){
-  if(this.filters.includes(venuetype)){
-    return false;
-  }
-  this.filters.push(venuetype);
-  this.weddingApiService.searchByType(this.filters).subscribe((res)=>{
-    this.venue=res;
-
-  },(error:any)=>{
-    this.errorMsg = error.statusText;
-    this.showerror = true;
-  })
+// send enquiry details to the database
+enquirydetails(enquiry){
+// this.weddingApiService.sendenquiry().subscribe((res)=>{
+//   console.log(res);
+// },(error:any)=>{
+//   console.log(error);
+// })
 }
+
 
 //sending booking details on backend
 onSubmit(booking) {
   booking.venueId=this.id;
-  booking.userId= JSON.parse(localStorage.getItem('currentUser'))['emailId'];
+  booking.userId= JSON.parse(localStorage.getItem('currentUser'))['Id'];
   this.authenticateUserService.onSubmit(booking).subscribe((res)=>{
+    Swal({
+      text: "Venue Booked Successfully",
+      showConfirmButton: false,
+      type: 'success',
+      timer:1500,
+    }) 
     console.log(booking);
   },(error)=>{
     this.errorMsg = error.statusText;
@@ -84,6 +95,7 @@ onSubmit(booking) {
   })
 }
 
+// to clear all fields after submit
 send(id){
   this.id=id;
   this.booking={};
@@ -92,32 +104,19 @@ send(id){
 
 //remove search filter on click
 remove(i){
-
   if(this.filters.length > 0){
-      this.searchContent=this.filters[i-1];
-      console.log(this.searchContent);
+    this.searchContent=this.filters[i];
+    console.log(this.searchContent);
     this.filters.splice(i,1);
-  }
-
-if(this.cities.includes(this.searchContent)){
+    console.log(this.filters);
     this.weddingApiService.searchByCity(this.filters).subscribe((res)=>{
       this.venue=res; 
     }),(error)=>{
       this.errorMsg = error.statusText;
       this.showerror = true;
+      console.log(error);
     }
-  }
-
-  if(this.Venuetypes.includes(this.searchContent)){
-    this.weddingApiService.searchByType(this.filters).subscribe((res)=>{
-      this.venue=res; 
-    }),(error)=>{
-      this.errorMsg = error.statusText;
-      this.showerror = true;
-    }
-  }
-
-}
+  }}
 
  // get data of venue details from database
  getvenueDetails() {
