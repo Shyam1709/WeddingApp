@@ -2,6 +2,10 @@
   height: 420px;
 }
 
+.img-effect{
+  filter:drop-shadow(8px 8px 10px gray);
+   filter:saturate(1);
+}
 .venue-fit{
   height: 350px;
   position: relative;
@@ -9,6 +13,12 @@
 }
 .img-text{
   opacity: 0.9;
+}
+/* css for extra small devices*/
+@media (min-width: 576px) and (max-width: 768px){
+.set-size{
+  height: 300px;
+}
 }
 
 /* css for extra small devices*/
