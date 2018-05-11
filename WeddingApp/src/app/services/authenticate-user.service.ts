@@ -88,14 +88,25 @@ isLoggedIn(){
 getuserDetails(userid){
   return this.http.get(AppConfig.getBookingDetailsUrl+userid,{headers:this.headers})
   .map((data)=>{
-   return data.json();
+    return data.json();
   },
   error=>{
     this.handleError(error);
   })
 }
 
-
+//send enquiry details to the database
+sendenquiry(formData){
+  console.log("hiii" + formData);
+  return this.http.post(AppConfig.sendEnquiryDetailsUrl,formData,{headers:this.headers})
+  .map((data)=>{
+     console.log(data);
+    return data.json();
+  },
+  error=>{
+    this.handleError(error);
+  })
+}
 
 // to check if user is logged in
 canActivate(){

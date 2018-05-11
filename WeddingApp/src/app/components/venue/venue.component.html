@@ -1,7 +1,7 @@
   <div class="container"> 
     <form class="col-md-6 mx-auto mb-4">
       <div class="input-group mt-5">
-        <input type="text" id="venueTitle" class="form-control"  placeholder="Search venue..." name="venueTitle" #name>
+        <input type="text" id="venueTitle" class="form-control"  placeholder="Search Caterer..." name="venueTitle" #name>
         <span class="input-group-btn">
           <button class="btn btn-primary" type="submit" (click)=search(name.value)> <i class="fa fa-search"></i></button>
         </span>
@@ -47,25 +47,50 @@
   </div>
 
   <!-- Modal for enquiry-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Enquiry Form</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" #closeModal aria-label="Close" (click)="reset(form)">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-         <form> 
-          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name" [(ngModel)]="enquiry.name">
-          <input class="form-control mb-3" type="text" name="emailId" placeholder="Enter your EmailId" [(ngModel)]="enquiry.emailId">
-          <input class="form-control mb-3" type="text" name="contactNo" placeholder="Enter your contactNo" [(ngModel)]="enquiry.contactNo">
+         <form [formGroup]="form"> 
+           <h6 class="text-danger text-center">{{validationMsg}}</h6>
+          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name" formControlName="name">
+          <div class="text-danger">
+            <p *ngIf="form.get('name').errors?.required && form.get('name').touched">Please Enter your Name</p>
+          <p *ngIf="form.get('name').errors?.pattern && form.get('name').touched">Please Enter Valid Name</p>
+            <p *ngIf="form.get('name').errors?.minlength && form.get('name').touched">Please Enter name of atleast 3 words</p>
+            <p *ngIf="form.get('name').errors?.maxlength && form.get('name').touched">Exceed maximum limit of 25 alphabets</p>
+          </div>
+          <input class="form-control mb-3" type="email" name="email" placeholder="Enter your Email ID" formControlName="email">
+          <div class="text-danger">
+            <p *ngIf="form.get('email').errors?.required && form.get('email').touched">Please Enter your Email</p>
+            <p *ngIf="form.get('email').errors?.pattern && form.get('email').touched">Please Enter your valid EmailID</p>
+          </div>
+          <input class="form-control mb-3" type="text" name="contactNo" placeholder="Enter your contact No" formControlName="contactNo">
+          <div class="text-danger">
+            <p *ngIf="form.get('contactNo').errors?.required && form.get('contactNo').touched">Please Enter your contact No</p>
+            <p *ngIf="form.get('contactNo').errors?.pattern && form.get('contactNo').touched">Please Enter your valid contact No of 10 digits</p>
+          </div>
+          <input class="form-control mb-3" type="date" name="date" formControlName="date">
+          <div class="text-danger">
+            <p *ngIf="form.get('date').errors?.required && form.get('date').touched">Please Select your Date</p>
+          </div>
+          <textarea class="form-control mb-3" rows="4" type="date" name="query_message" placeholder="Write your Query Message" formControlName="query_message"></textarea>
+          <div class="text-danger">
+            <p *ngIf="form.get('query_message').errors?.required && form.get('query_message').touched">Please Enter Some message</p>
+            <p *ngIf="form.get('query_message').errors?.minlength && form.get('query_message').touched">Please Enter Message of atleast 5 words</p>
+            <p *ngIf="form.get('query_message').errors?.maxlength && form.get('query_message').touched">Exceed maximum limit of 100 words</p>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="enquirydetails(enquiry)">Submitt</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reset(form)">Close</button>
+        <button type="button" class="btn btn-primary" (click) ="enquirydetails(form)" >Submitt</button>
       </div>
     </div>
   </div>

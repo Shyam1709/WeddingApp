@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
     this.userid=JSON.parse(localStorage.getItem('currentUser'))['Id'];
     this.authenticateUserService.getuserDetails(this.userid).subscribe((response)=>{
      this.bookingDetails=response.bookingres;
-      console.log(response.bookingres);
+     console.log(this.bookingDetails);
     },(error)=>{
       this.errorMsg = error.statusText;
       this.showerror = true;

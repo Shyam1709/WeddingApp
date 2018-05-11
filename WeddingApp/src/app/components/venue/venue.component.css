@@ -184,3 +184,18 @@ h6{
 
 }
 
+.animatedalert{
+  align-content: center;
+  margin: auto;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
+/*for removing focus from the button */
+.btn:focus{
+  outline: none;
+  box-shadow: none;
+}

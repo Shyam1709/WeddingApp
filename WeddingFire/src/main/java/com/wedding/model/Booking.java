@@ -16,21 +16,16 @@ public class Booking {
 	private Date date;
 	@DBRef
 	private List<Venue> venuedetails;
-	public List<Venue> getVenuedetails() {
-		return venuedetails;
-	}
-
-	public void setVenuedetails(List<Venue> venuedetails) {
-		this.venuedetails = venuedetails;
-	}
+    @DBRef
+    
+	
 
 	private Long contactNo;
-    private String userId;
+	private String userId;
+
 	public Booking() {
 
 	}
-
-
 
 	public Booking(String id, String emailId, String venueId, Date date, List<Venue> venuedetails, Long contactNo,
 			String userId) {
@@ -55,8 +50,6 @@ public class Booking {
 	public String getId() {
 		return id;
 	}
-
-	
 
 	public String getEmailId() {
 		return emailId;
@@ -88,5 +81,12 @@ public class Booking {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public List<Venue> getVenuedetails() {
+		return venuedetails;
+	}
+
+	public void setVenuedetails(List<Venue> venuedetails) {
+		this.venuedetails = venuedetails;
 	}
 }

@@ -1,0 +1,28 @@
+
+
+/* css for small  devices */
+@media (max-width: 576px) {
+  h2{
+    font-size: 20px;
+  }
+  td,th{
+    font-size:12px;
+  }
+ .btn{
+  font-size: 20px;
+ }
+
+  .table-responsive {
+    max-height:200px;
+  }
+
+
+}
+
+
+/* css for large devices */
+@media (min-width: 992px) and (max-width: 1500px) {
+  .table-responsive {
+    max-height:200px;
+  }
+}

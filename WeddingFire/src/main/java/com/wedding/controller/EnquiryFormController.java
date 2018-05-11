@@ -1,11 +1,12 @@
 package com.wedding.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,12 +33,15 @@ public class EnquiryFormController {
 
 	// save enquiry details of users into the database
 	@RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateExist(@RequestBody EnquiryForm enquiryForm) {
+	public ResponseEntity<Map<String, String>> saveEnquiry(@RequestBody EnquiryForm enquiryForm) {
+		Map<String, String> response = new HashMap<String, String>();
 		try {
 			enquiryFormRepository.save(enquiryForm);
-			return new ResponseEntity<String>("Saved", HttpStatus.OK);
+			response.put("Success", "Enquiry Details send Successfully");
+			return ResponseEntity.accepted().body(response);
 		} catch (Exception e) {
-			return new ResponseEntity<String>("Error", HttpStatus.BAD_REQUEST);
+			response.put("Error", "Enquiry Details send Failed");
+			return ResponseEntity.badRequest().body(response);
 		}
 
 	}

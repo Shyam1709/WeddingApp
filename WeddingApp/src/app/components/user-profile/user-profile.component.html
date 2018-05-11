@@ -23,19 +23,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>RK Farm</td>
-              <td>Ghaziabad</td>
-              <td>20-04-2018</td>
-              <td>1300/plate</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Vandana Farm</td>
-              <td>Ghaziabad</td>
-              <td>24-04-2018</td>
-              <td>1600/plate</td>
+            <tr *ngFor ="let details of bookingDetails; let i=index; ">
+              <th scope="row">{{i+1}}</th>
+              <td>{{details.venuedetails[0].venueName}}</td>
+              <td>{{details.venuedetails[0].location}}</td>
+              <td>{{details.date | date}}</td>
+              <td>{{details.venuedetails[0].price}}/plate</td>
             </tr>
           </tbody>
         </table>

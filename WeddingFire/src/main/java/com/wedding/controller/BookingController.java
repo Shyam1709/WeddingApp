@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jayway.jsonpath.internal.Utils;
 import com.wedding.model.Booking;
-import com.wedding.model.Venue;
+
 import com.wedding.repository.BookingRepository;
 import com.wedding.repository.VenueRepository;
 
@@ -46,25 +45,10 @@ public class BookingController {
 			response.put("error", "venue not booked");
 		}
 		bookingRepository.save(booking);
-		// Venue v = venueRepository.findById(booking.getVenueId());
-		// response.put("venueName", v.getVenueName());
-		// response.put("venuePrice", String.valueOf(v.getPrice()));
-		// response.put("location", v.getLocation());
-		// response.put("bookingDate",String.valueOf(booking.getDate()));
 		response.put("ok", "venue booked successfully");
 		return ResponseEntity.accepted().body(response);
 	}
 
-	// to get booking details from database
-	// @RequestMapping(value = "/bookingdetails/{userid}", method =
-	// RequestMethod.GET)
-	// public ResponseEntity<Map<String, String>> getDetails(@PathVariable String
-	// userid) {
-	// Map<String, String> response = new HashMap<String, String>();
-	// List<Booking> b = bookingRepository.findByUserId(userid);
-	// response.put("ok", String.valueOf(b));
-	// return ResponseEntity.accepted().body(response);
-	// }
 
 	@RequestMapping(value = "/bookingdetails/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<?>>> getDetails(@PathVariable String userId) {

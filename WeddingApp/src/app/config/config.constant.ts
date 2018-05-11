@@ -50,4 +50,7 @@ public static sendBookingDetailsUrl="http://localhost:8095/wed/booking/venue";
 
 // to get booking details from database
 public static getBookingDetailsUrl="http://localhost:8095/wed/booking/bookingdetails/";
+
+// to send enquiry details to database
+public static sendEnquiryDetailsUrl="http://localhost:8095/wedding/enquiry/save";
 }
