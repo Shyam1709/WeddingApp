@@ -88,6 +88,7 @@ isLoggedIn(){
 getuserDetails(userid){
   return this.http.get(AppConfig.getBookingDetailsUrl+userid,{headers:this.headers})
   .map((data)=>{
+    console.log(data);
     return data.json();
   },
   error=>{

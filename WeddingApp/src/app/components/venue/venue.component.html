@@ -21,7 +21,7 @@
       </ul> 
       <ul class="list-group mt-5 text-center set-ul" id="typeList">
         <li class="list-group-item list-group-item-primary">Select by Type</li>
-        <a class="list-group-item" *ngFor="let venuetype of Venuetypes" (click)="searchVenueType(venuetype.name)">{{venuetype.name}}</a>
+        <a class="list-group-item" *ngFor="let venuetype of Venuetypes" (click)="searchVenueType(venuetype?.name)">{{venuetype?.name}}</a>
       </ul>   
     </div>
     <div class="col-md-10 col-sm-9 mR15">

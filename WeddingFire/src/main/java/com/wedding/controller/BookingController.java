@@ -1,18 +1,12 @@
 package com.wedding.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wedding.model.Booking;
 
 import com.wedding.repository.BookingRepository;
+import com.wedding.repository.CateringProviderRepository;
 import com.wedding.repository.VenueRepository;
-
 
 @RestController
 @RequestMapping("/wed/booking")
@@ -31,10 +25,13 @@ public class BookingController {
 
 	BookingRepository bookingRepository;
 	VenueRepository venueRepository;
+	CateringProviderRepository cateringProviderRepository;
 
-	public BookingController(BookingRepository bookingRepository, VenueRepository venueRepository) {
+	public BookingController(BookingRepository bookingRepository, VenueRepository venueRepository,
+			CateringProviderRepository cateringProviderRepository) {
 		this.bookingRepository = bookingRepository;
 		this.venueRepository = venueRepository;
+		this.cateringProviderRepository = cateringProviderRepository;
 	}
 
 	// to save userdetails in the database via booking form
@@ -49,22 +46,42 @@ public class BookingController {
 		return ResponseEntity.accepted().body(response);
 	}
 
-
+	// to get booking details by userid
 	@RequestMapping(value = "/bookingdetails/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<?>>> getDetails(@PathVariable String userId) {
-		 Map<String, List<?>> response = new HashMap<String, List<?>>();
+		Map<String, List<?>> response = new HashMap<String, List<?>>();
 		List<Booking> selected = new ArrayList<Booking>();
-		
+
 		selected.addAll(bookingRepository.findByUserIdLike(userId));
 		for (int i = 0; i < selected.size(); i++) {
 			Booking b = selected.get(i);
+			if(b.getVenueId()!=null)
 			b.setVenuedetails(venueRepository.findOneById(b.getVenueId()));
-            
-		}
+			if(b.getCateringId()!="") {
+			b.setCateringdetails(cateringProviderRepository.findOneById(b.getCateringId()));
+		}}
 		response.put("bookingres", selected);
-	//	selected.addAll(selectedvenue);
+		// selected.addAll(selectedvenue);
 		return ResponseEntity.accepted().body(response);
 	}
 
+	// to get bookingdetails by userid
+	// @RequestMapping(value = "/bookingdetails/{userId}", method =
+	// RequestMethod.GET)
+	// public ResponseEntity<Map<String, List<?>>> getDetails(@PathVariable String
+	// userId) {
+	// Map<String, List<?>> response = new HashMap<String, List<?>>();
+	// List<Booking> selected = new ArrayList<Booking>();
+	//
+	// selected.addAll(bookingRepository.findByUserIdLike(userId));
+	// for (int i = 0; i < selected.size(); i++) {
+	// Booking b = selected.get(i);
+	// b.setVenuedetails(venueRepository.findOneById(b.getVenueId()));
+	//
+	// }
+	// response.put("bookingres", selected);
+	// // selected.addAll(selectedvenue);
+	// return ResponseEntity.accepted().body(response);
+	// }
 
 }

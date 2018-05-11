@@ -23,6 +23,7 @@ public class CateringProvider {
 	public CateringProvider(String cateringProvider, String location, Double rating, Long contactNo, Integer price,
 			String description, String imagePath) {
 		super();
+		this.id=id;
 		this.cateringProvider = cateringProvider;
 		this.location = location;
 		this.rating = rating;
@@ -52,6 +53,10 @@ public class CateringProvider {
 
 	public String getLocation() {
 		return location;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public void setLocation(String location) {

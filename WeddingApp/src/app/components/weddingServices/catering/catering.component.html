@@ -33,8 +33,8 @@
             <h6 class="card-text">{{item.description}}</h6>
             <p class="card-text">Rating: {{item.rating}}<i class="fas fa-star text-primary"></i><span class="pl-5"><i class="fas fa-phone"></i></span>: {{item.contactNo}}</p>
             <p class="card-text">Starting Price: <i class="fas fa-rupee-sign text-success"></i> {{item.price}}</p>
-            <a href="#" class="btn btn-primary btn-sm">Enquiry</a>
-            <a href="#" class="btn btn-primary btn-sm">Book Now</a>
+            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Enquiry</a>
+            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#booking" (click)="send(item.id)">Book Now</a>
           </div>
         </div>
       </div>
@@ -42,5 +42,82 @@
   </div>
 </div>
 </div>
+<!-- Modal for enquiry-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Enquiry Form</h5>
+        <button type="button" class="close" data-dismiss="modal" #closeModal aria-label="Close" (click)="reset(form)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form [formGroup]="form"> 
+         <h6 class="text-danger text-center">{{validationMsg}}</h6>
+         <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name" formControlName="name">
+         <div class="text-danger">
+          <p *ngIf="form.get('name').errors?.required && form.get('name').touched">Please Enter your Name</p>
+          <p *ngIf="form.get('name').errors?.pattern && form.get('name').touched">Please Enter Valid Name</p>
+          <p *ngIf="form.get('name').errors?.minlength && form.get('name').touched">Please Enter name of atleast 3 words</p>
+          <p *ngIf="form.get('name').errors?.maxlength && form.get('name').touched">Exceed maximum limit of 25 alphabets</p>
+        </div>
+        <input class="form-control mb-3" type="email" name="email" placeholder="Enter your Email ID" formControlName="email">
+        <div class="text-danger">
+          <p *ngIf="form.get('email').errors?.required && form.get('email').touched">Please Enter your Email</p>
+          <p *ngIf="form.get('email').errors?.pattern && form.get('email').touched">Please Enter your valid EmailID</p>
+        </div>
+        <input class="form-control mb-3" type="text" name="contactNo" placeholder="Enter your contact No" formControlName="contactNo">
+        <div class="text-danger">
+          <p *ngIf="form.get('contactNo').errors?.required && form.get('contactNo').touched">Please Enter your contact No</p>
+          <p *ngIf="form.get('contactNo').errors?.pattern && form.get('contactNo').touched">Please Enter your valid contact No of 10 digits</p>
+        </div>
+        <input class="form-control mb-3" type="date" name="date" formControlName="date">
+        <div class="text-danger">
+          <p *ngIf="form.get('date').errors?.required && form.get('date').touched">Please Select your Date</p>
+        </div>
+        <textarea class="form-control mb-3" rows="4" type="date" name="query_message" placeholder="Write your Query Message" formControlName="query_message"></textarea>
+        <div class="text-danger">
+          <p *ngIf="form.get('query_message').errors?.required && form.get('query_message').touched">Please Enter Some message</p>
+          <p *ngIf="form.get('query_message').errors?.minlength && form.get('query_message').touched">Please Enter Message of atleast 5 words</p>
+          <p *ngIf="form.get('query_message').errors?.maxlength && form.get('query_message').touched">Exceed maximum limit of 100 words</p>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reset(form)">Close</button>
+      <button type="button" class="btn btn-primary" (click) ="enquirydetails(form)" >Submitt</button>
+    </div>
+  </div>
+</div>
+</div> 
+<!-- Modal ends here -->
+
+<!-- Modal for Booking -->
+<div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Booking Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form> 
+          <input class="form-control mb-3" type="text" name="name" placeholder="Enter your Name">
+          <input class="form-control mb-3" [(ngModel)]="booking.emailId" type="email" name="emailId" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Enter your EmailId" #emailId='ngModel'>
+          <input class="form-control mb-3" [(ngModel)]="booking.contactNo" type="phone" name="contactNo" required pattern="^[2-9]{1}[0-9]{9}$" placeholder="Enter your contactNo" #contactNo='ngModel'>
+          <input class="form-control mb-3" [(ngModel)]="booking.date" type="date" name="date" #date='ngModel'>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit(booking)">Book Now</button>
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- Modal ends here -->
 
 

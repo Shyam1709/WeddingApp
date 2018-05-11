@@ -13,13 +13,12 @@ public class Booking {
 	private String id;
 	private String emailId;
 	private String venueId;
+	private String cateringId;
 	private Date date;
 	@DBRef
 	private List<Venue> venuedetails;
-    @DBRef
-    
-	
-
+	@DBRef
+	private List<CateringProvider> cateringdetails;
 	private Long contactNo;
 	private String userId;
 
@@ -27,14 +26,16 @@ public class Booking {
 
 	}
 
-	public Booking(String id, String emailId, String venueId, Date date, List<Venue> venuedetails, Long contactNo,
-			String userId) {
+	public Booking(String id, String emailId, String venueId, String cateringId, Date date, List<Venue> venuedetails,
+			List<CateringProvider> cateringdetails, Long contactNo, String userId) {
 		super();
 		this.id = id;
 		this.emailId = emailId;
 		this.venueId = venueId;
+		this.cateringId = cateringId;
 		this.date = date;
 		this.venuedetails = venuedetails;
+		this.cateringdetails = cateringdetails;
 		this.contactNo = contactNo;
 		this.userId = userId;
 	}
@@ -82,6 +83,7 @@ public class Booking {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public List<Venue> getVenuedetails() {
 		return venuedetails;
 	}
@@ -89,4 +91,21 @@ public class Booking {
 	public void setVenuedetails(List<Venue> venuedetails) {
 		this.venuedetails = venuedetails;
 	}
+
+	public String getCateringId() {
+		return cateringId;
+	}
+
+	public void setCateringId(String cateringId) {
+		this.cateringId = cateringId;
+	}
+
+	public List<CateringProvider> getCateringdetails() {
+		return cateringdetails;
+	}
+
+	public void setCateringdetails(List<CateringProvider> cateringdetails) {
+		this.cateringdetails = cateringdetails;
+	}
+
 }
